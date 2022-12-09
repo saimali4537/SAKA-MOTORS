@@ -164,7 +164,7 @@ const createPostReview = asyncHandler(async (req, res) => {
 // @route   GET /api/posts/top
 // @access  Public
 const getTopPosts = asyncHandler(async (req, res) => {
-  const limit = 3
+  const limit = 4
   const posts = await Post.find({}).sort({ rating: -1 }).limit(limit)
 
   res.json(posts)

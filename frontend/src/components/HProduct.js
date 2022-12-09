@@ -5,14 +5,14 @@ import Rating from "./Rating";
 const HProduct = ({ product }) => {
   
   return (
-    <Card border="danger" className='my-3 p-3 rounded' >
+    <Card border="danger" className='my-3 p-3 rounded' style={{ height: '18rem' }}>
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} variant='top' />
       </Link>
 
       <Card.Body>
         <Link to={`/product/${product._id}`}>
-          <Card.Title as='div'>
+          <Card.Title as='div'  style={{ height: '4rem' }}>
             <strong>{product.name}</strong>
           </Card.Title>
         </Link>
