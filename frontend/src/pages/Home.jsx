@@ -10,6 +10,8 @@ import ServicesList from "../components/UI/ServicesList";
 import comp from "../assets/data/comp";
 import CompItem from "../components/UI/CompItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
+import Posts from "../components/UI/Posts";
+import Products from "../components/UI/Products";
 
 
 
@@ -76,6 +78,7 @@ const Home = () => {
               <h6 className="section__subtitle">Come with</h6>
               <h2 className="section__title">Hot Products</h2>
             </Col>
+          <Products/>
           </Row>
         </Container>
       </section>
@@ -89,6 +92,7 @@ const Home = () => {
               <h6 className="section__subtitle">Explore our posts</h6>
               <h2 className="section__title">Latest Posts</h2>
             </Col>
+              <Posts/>
           </Row>
         </Container>
       </section>
