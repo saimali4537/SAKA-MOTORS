@@ -1,9 +1,9 @@
-import React from "react";
-
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../../styles/footer.css";
-
+import {  emailA } from '../../actions/emailActions';
 const quickLinks = [
   {
     path: "/about",
@@ -30,9 +30,18 @@ const quickLinks = [
   },
 ];
 
+
 const Footer = () => {
+  const [email, setEmail] = useState('')
+  const dispatch = useDispatch()
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(emailA(email))
+    window.location.reload(false);
+  }
   const date = new Date();
   const year = date.getFullYear();
+  
   return (
     <footer className="footer">
       <Container>
@@ -85,9 +94,9 @@ Here you have a greater chances of getting a quality product including cars and 
               <h5 className="footer__link-title">Newsletter</h5>
               <p className="section__description">Subscribe our newsletter</p>
               <div className="newsletter">
-                <input type="email" placeholder="Email" />
-                <span>
-                  <i class="ri-send-plane-line"></i>
+                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                <span style={{color:'blue',cursor:'pointer'}} onClick={submitHandler}>
+                  <i class="ri-send-plane-line" ></i>
                 </span>
               </div>
             </div>

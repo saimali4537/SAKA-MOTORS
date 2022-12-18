@@ -69,9 +69,16 @@ const createProt = asyncHandler(async (req, res) => {
     numReviews: 0,
     
   })
-
-  const createdProt = await prot.save()
+  const prots = await Prot.find({ user: req.mechanic._id })
+  if (prots.length===0) {
+    const createdProt = await prot.save()
   res.status(201).json(createdProt)
+
+  } else {
+    res.status(404);
+    throw new Error('Sorry, You can have only One Profile At a Time');
+  }
+  
 })
 
 // @desc    Update a prot
@@ -159,7 +166,7 @@ const getTopProts = asyncHandler(async (req, res) => {
 })
 
 const getMyProts = asyncHandler(async (req, res) => {
-  const prots = await Prot.find({ user: req.manager._id })
+  const prots = await Prot.find({ user: req.mechanic._id })
   res.json(prots)
 })
 

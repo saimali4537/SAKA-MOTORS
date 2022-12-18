@@ -10,8 +10,10 @@ const otpSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 )
+otpSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60})
+
 
 const Otp = mongoose.model('Otp', otpSchema)
 

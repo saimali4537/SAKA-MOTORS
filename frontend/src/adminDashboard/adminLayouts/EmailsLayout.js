@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import {  useSelector } from 'react-redux'
-import ProtListScreenA from '../../screens/mechanicScreen/ProtListScreenA'
+import EmailListScreen from '../../screens/userScreen/EmailListScreen'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar';
 
 
+
  
-function ProfilesLayout({history}){
+function EmailsLayout({history}){
 
     const adminLogin = useSelector((state) => state.adminLogin)
   const { adminInfo } = adminLogin
@@ -27,7 +28,7 @@ function ProfilesLayout({history}){
                 <div class="container-fluid" id="main">
                  <div class="row row-offcanvas row-offcanvas-left">
                    <Sidebar/>
-                  <ProtListScreenA/>
+                  <EmailListScreen/>
                 
              </div>
             </div>  
@@ -35,5 +36,5 @@ function ProfilesLayout({history}){
         );
     }
   
-export default ProfilesLayout
+export default EmailsLayout
 

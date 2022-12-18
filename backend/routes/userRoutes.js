@@ -5,11 +5,14 @@ import {
   registerUser,
   getUserProfile,
   updateUserProfile,
+  updateUserProfileP,
   getUsers,
   deleteUser,
   getUserById,
   updateUser,
-  countUsers
+  emailSend,
+  emailSendf,
+  emailSucc
 } from '../controllers/userController.js'
 import { protecta, admin, protectu } from '../middleware/authMiddleware.js'
 
@@ -18,8 +21,17 @@ router.route('/')
   .get(protecta,  getUsers)
 
 router
-  .post('/login', authUser)
+  .post('/send', emailSend )
+router
+  .post('/sendf', emailSendf )
 
+router
+  .post('/login', authUser)
+router
+  .post('/log', emailSucc)
+
+router
+  .post('/profilep', updateUserProfileP)
 
 router.route('/profile')
   .get(protectu, getUserProfile)
@@ -28,6 +40,6 @@ router.route('/profile')
 router.route('/:id')
   .delete(protecta, deleteUser)
   .get(protecta, getUserById)
-  .put(protecta,  updateUser)
+  .put( updateUser)
 
 export default router;

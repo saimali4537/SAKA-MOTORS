@@ -124,8 +124,8 @@ const updateAuction = asyncHandler(async (req, res) => {
     auction.cnt = cnt
     auction.location = location
     try {
-      auction.timer = parseInt(1000);
-      let duration = parseInt(1000);
+      auction.timer = parseInt(259200);
+      let duration = parseInt(259200);
       let timer = parseInt(auction.timer);
       let intervalTimer = setInterval(async () => {
         timer -= 1;

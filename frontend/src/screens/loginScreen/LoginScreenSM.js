@@ -61,6 +61,14 @@ const LoginScreenS = ({ location, history }) => {
           Sign In
         </Button>
       </Form>
+      <Row className='py-3'>
+      <Col>
+          Forgot Password?{' '}
+          <Link to={redirect ? `/forgets?redirect=${redirect}` : '/forgets'}>
+            Forget
+          </Link>
+        </Col>
+      </Row>
 
       <Row className='py-3'>
         <Col>

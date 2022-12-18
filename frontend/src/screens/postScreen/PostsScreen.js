@@ -7,6 +7,7 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import Meta from '../../components/Meta'
 import { listPosts } from '../../actions/postActions';
+import ProductCarousel from '../../components/ProductCarousel'
 
 const PostsScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -23,9 +24,14 @@ const PostsScreen = ({ match }) => {
   return (
     <>
       <Meta />
+      {!keyword ? (
+        <></>
+      ) : (
           <Link to='/' className='btn btn-light'>
             Go Back
           </Link>
+        )
+      }
       { loading ? (
         <Loader />
       ) : error ? (

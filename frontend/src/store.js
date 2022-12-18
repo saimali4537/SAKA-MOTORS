@@ -83,6 +83,7 @@ import {
   storeListMyReducer,
 } from './reducers/storeReducers';
 import { cartReducer } from './reducers/cartReducers'
+import { emailRegisterReducer , emailListReducer} from './reducers/emailReducers'
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -149,6 +150,9 @@ const reducer = combineReducers({
   postTopRated: postTopRatedReducer,
   postListMy: postListMyReducer,
   postSList: postSListReducer,
+
+  emailRegister: emailRegisterReducer,
+  emailList: emailListReducer,
 
   auctionList: auctionListReducer,
   auctionDetails: auctionDetailsReducer,

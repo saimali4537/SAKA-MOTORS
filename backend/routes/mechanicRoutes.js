@@ -5,10 +5,14 @@ import {
   registerMechanaic,
   getMechanaicProfile,
   updateMechanaicProfile,
+  updateMechanicProfileP,
   getMechanaics,
   deleteMechanaic,
   getMechanaicById,
   updateMechanaic,
+  emailSend,
+  emailSendf,
+  emailSucc
 } from '../controllers/mechanicController.js'
 import { protectm, mechanic } from '../middleware/authMiddleware.js'
 
@@ -18,6 +22,17 @@ router.route('/')
 
 router
   .post('/login', authMechanaic)
+
+  router
+  .post('/send', emailSend )
+
+router
+  .post('/log', emailSucc)
+  router
+  .post('/sendf', emailSendf )
+
+  router
+  .post('/profilep', updateMechanicProfileP)
 
 router.route('/profile')
   .get(protectm, getMechanaicProfile)

@@ -7,6 +7,7 @@ import { STORE_CREATE_RESET } from '../../constants/storeConstants'
 const StoreCreation = ({ history, match }) => {
 
   const dispatch = useDispatch()
+  const [disable, setDisable] = React.useState(true);
 
   const storeCreate = useSelector((state) => state.storeCreate)
   const {
@@ -16,28 +17,20 @@ const StoreCreation = ({ history, match }) => {
     store: createdStore,
   } = storeCreate
 
-  const managerLogin = useSelector((state) => state.managerLogin)
-  const { managerInfo } = managerLogin
-
   useEffect(() => {
     dispatch({ type: STORE_CREATE_RESET })
-
-    if (!managerInfo || !managerInfo.isAdmin) {
-      history.push('/registersm')
-    } if (successCreate) {
+    if (successCreate) {
       history.push(`/storeca/store/${createdStore._id}`)
     } else {
     }
   }, [
     history,
-    managerInfo,
     successCreate,
     createdStore,
   ])
 
-  const i=0;
   const checkboxHandler = () => {
-    i=1;
+    setDisable(false)
   }
   const createStoreHandler = () => {
     dispatch(createStore1())
@@ -79,7 +72,7 @@ Comply with law or with legal process. Try to protect against misuse or unauthor
         </div>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createStoreHandler}>
+          <Button className='my-3' onClick={createStoreHandler} disabled={disable}>
             <i className='fas fa-plus'></i> Create Store
           </Button>
         </Col>

@@ -61,6 +61,14 @@ const LoginScreenM = ({ location, history }) => {
           Sign In
         </Button>
       </Form>
+      <Row className='py-3'>
+      <Col>
+          Forgot Password?{' '}
+          <Link to={redirect ? `/forget?redirect=${redirect}` : '/forget'}>
+            Forget
+          </Link>
+        </Col>
+      </Row>
       <Row className='py-2'>
         
         <Col>
@@ -70,6 +78,7 @@ const LoginScreenM = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      
 
       <Row className='py-2'>
         

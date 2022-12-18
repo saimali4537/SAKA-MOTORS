@@ -67,11 +67,14 @@ import PostEditScreen from './screens/postScreen/PostEditScreen'
 import PostCreation from './screens/postScreen/PostCreation'
 import PostScreen from './screens/postScreen/PostScreen'
 import PostListScreen from './screens/postScreen/PostListScreen'
+import ProtListScreen from './screens/mechanicScreen/ProtListScreen'
 import PostListScreenA from './adminDashboard/adminLayouts/PostsLayout'
 import PostEditScreenA from './screens/postScreen/PostEditScreenA'
 import MechanicListScreenA from './adminDashboard/adminLayouts/MechanicsLayout'
+import EmailListScreen from './adminDashboard/adminLayouts/EmailsLayout'
 import MechanicEditScreenA from './screens/mechanicScreen/MechanicEditScreenA'
-import ProtListScreen from './adminDashboard/adminLayouts/ProfilesLayout'
+import ProtListScreenA from './adminDashboard/adminLayouts/ProfilesLayout'
+import ProtEditScreenA from './screens/mechanicScreen/ProtEditScreenA'
 import ProtEditScreen from './screens/mechanicScreen/ProtEditScreen'
 import AuctionScreen from './screens/auctionScreen/AuctionScreen'
 import AuctionsScreen from './screens/auctionScreen/AuctionsScreen'
@@ -85,6 +88,10 @@ import Nav from './adminDashboard/Navbar'
 import BidListScreen from './screens/auctionScreen/BidListScreen'
 import BidsLayout from './adminDashboard/adminLayouts/BidsLayout'
 import KommunicateChat from './chat'
+import ForgetScreen from './screens/loginScreen/ForgetScreen'
+import ForgetScreenS from './screens/loginScreen/ForgetScreenS'
+import ForgetScreenM from './screens/loginScreen/ForgetScreenM'
+
 
 
 
@@ -143,7 +150,7 @@ const App = () => {
           <Route path='/manager/product/:id/edit' component={SHeader} />
           
           <Route path='/manager/orderlist' component={SHeader} />
-          <Route path='/search/:keyword' component={SHeader} exact />
+          <Route path='/searchs/:keyword' component={SHeader} exact />
           <Route path='/pagep/:pageNumber' component={SHeader} exact />
           <Route path='/search/:keyword/pagep/:pageNumber' component={SHeader} exact />
           <Route path='/pagel/:pageNumber' component={SHeader} exact />
@@ -186,6 +193,15 @@ const App = () => {
         <Route path='/user/mybid' component={AHeader} />
         <Route path='/orderd/:id' component={SHeader} />
 
+        <Route path='/searchp/:keyword' component={PHeader} exact />
+
+        <Route path='/searchm/:keyword' component={MHeader} exact />
+        <Route path='/searcha/:keyword' component={AHeader} />
+        <Route path='/protm' component={MHeader} />
+        <Route path='/mechanic/prot/:id/edit' component={MHeader} exact />
+        <Route path='/forget' component={Header} />
+        <Route path='/forgets' component={SHeader} />
+        <Route path='/forgetm' component={MHeader} />
 
         
 
@@ -208,10 +224,17 @@ const App = () => {
         <Route path='/post/:id' component={PostScreen} />
         <Route path='/user/postlist' component={PostListScreen} />
         <Route path='/user/post/:id/edit' component={PostEditScreen} />
+        <Route path='/searchp/:keyword' component={PostsScreen} exact />
         <Route path='/user/mybid' component={BidListScreen} />
+        <Route path='/forget' component={ForgetScreen} />
+        <Route path='/forgets' component={ForgetScreenS} />
+        <Route path='/forgetm' component={ForgetScreenM} />
+
+
 
 
         <Route path='/auction' component={AuctionScreen} />
+        <Route path='/searcha/:keyword' component={AuctionScreen} />
         <Route path='/aauction' component={AuctionCreation} />
         <Route path='/auctions/:id' component={AuctionEditScreen} />
         <Route path='/auctione/:id' component={AuctionsScreen} />
@@ -266,20 +289,22 @@ const App = () => {
           <Route path='/posts/:id' component={PostEditScreen} />
           <Route path='/apost' component={PostCreation} />
 
-          <Route path='/admin/prot/:id/edit' component={ProtEditScreen} exact />
+          <Route path='/admin/prot/:id/edit' component={ProtEditScreenA} exact />
+          <Route path='/mechanic/prot/:id/edit' component={ProtEditScreen} exact />
+
 
           <Route path='/manager/orderlist' component={OrderListScreen} />
-          <Route path='/search/:keyword' component={StoreScreen} exact />
+          <Route path='/searchs/:keyword' component={StoreScreen} exact />
           <Route path='/pagep/:pageNumber' component={StoreScreen} exact />
         <Route path='/mechanic' component={MechanicScreen} exact />
         <Route path='/mechanic/pagep/:pageNumber' component={MechanicScreen} exact />
-        <Route path='/mechanic/search/:keyword' component={MechanicScreen} exact />
+        <Route path='/searchm/:keyword' component={MechanicScreen} exact />
 
 
           
           <Route path='/search/:keyword/pagep/:pageNumber' component={StoreScreen} exact />
           <Route path='/store' component={StoreScreen} exact />
-          <Route path='/search/:keyword' component={Storeby} exact />
+          <Route path='/store/search/:keyword' component={Storeby} exact />
           <Route path='/pagel/:pageNumber' component={Storeby} exact />
           
           <Route path='/search/:keyword/pagel/:pageNumber' component={Storeby} exact />
@@ -291,6 +316,7 @@ const App = () => {
 
           <Route path='/profilesm' component={ProfileSM} />
           <Route path='/profilem' component={ProfileScreenM} />
+          <Route path='/protm' component={ProtListScreen} />
 
 
 
@@ -316,8 +342,8 @@ const App = () => {
           <Route path='/admin/postslist' component={PostListScreenA} exact />
           <Route path='/admin/postslist/:pageNumber' component={PostListScreenA} exact />
           
-          <Route path='/admin/protlist' component={ProtListScreen} exact />
-          <Route path='/admin/protlist/:pageNumber' component={ProtListScreen} exact />
+          <Route path='/admin/protlist' component={ProtListScreenA} exact />
+          <Route path='/admin/protlist/:pageNumber' component={ProtListScreenA} exact />
 
           <Route path='/admin/productlist' component={ProductListScreenA} exact />
           <Route path='/admin/productlist/:pageNumber' component={ProductListScreenA} exact />
@@ -328,8 +354,7 @@ const App = () => {
           <Route path='/admin/auctionlist' component={AuctionListScreenA} />
           <Route path='/admin/booklist' component={BooksLayout} />
           <Route path='/admin/bidlist' component={BidsLayout} />
-
-
+          <Route path='/admin/emaillist' component={EmailListScreen} />
 
           
         </main>

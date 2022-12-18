@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
@@ -7,8 +7,8 @@ import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import {NavDropdown } from 'react-bootstrap'
-import SearchBox from '../SearchBox'
-import { logout } from '../../actions/userActions'
+import SearchBox from '../SearchBoxM'
+import { logoutm } from '../../actions/userActions'
 import { logout1 } from '../../actions/mechanicActions'
 
 
@@ -43,15 +43,23 @@ const navLinks = [
 
 const Header = () => {
   const dispatch = useDispatch();
+  const [disable, setDisable] = React.useState('');
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
-
+const managerLogin = useSelector(state => state.managerLogin)
+  const { managerInfo } = managerLogin
   const mechanicLogin = useSelector(state => state.mechanicLogin)
   const { mechanicInfo } = mechanicLogin
 
+  useEffect(() => {
+    if(userInfo||managerInfo||mechanicInfo){
+      setDisable('none')
+    }
+  }, [userInfo])
+
   const logoutHandler = () => {
-    dispatch(logout())
+    dispatch(logoutm())
   }
 
   const logoutHandler1 = () => {
@@ -89,7 +97,7 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                     
-              <Link to="/loginm" className=" d-flex align-items-center gap-1">
+              <Link to="/loginm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
@@ -116,9 +124,12 @@ const Header = () => {
                   <LinkContainer to='/mechanic/bookings'>
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to='/protm' >
+                    <NavDropdown.Item>Protfolio</NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               )}
-              <Link to="/registerm" className=" d-flex align-items-center gap-1">
+              <Link to="/registerm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>

@@ -75,9 +75,9 @@ const createStore = asyncHandler(async (req, res) => {
     location: 'Sample',
     
   })
-
   const createdStore = await store.save()
   res.status(201).json(createdStore)
+
 })
 const createStore1 = asyncHandler(async (req, res) => {
   const store = new Store({
@@ -91,8 +91,15 @@ const createStore1 = asyncHandler(async (req, res) => {
     
   })
 
-  const createdStore1 = await store.save()
-  res.status(201).json(createdStore1)
+  const stores = await Store.find({ user: req.manager._id })
+  if (stores.length===0) {
+    const createdStore1 = await store.save()
+    res.status(201).json(createdStore1)
+
+  } else {
+    res.status(404);
+    throw new Error('Sorry, You can have only One Store At a Time');
+  }
 })
 
 // @desc    Update a product

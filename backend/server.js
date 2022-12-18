@@ -31,6 +31,8 @@ import postRoutesA from './routes/postRoutesA.js'
 import bidRoutes from './routes/bidRoutes.js'
 import overviewRoutes from './routes/overviewRoutes.js'
 import paymentRoutes from './routes/payment.js'
+import emailRoutes from './routes/emailRoutes.js'
+
 
 
 
@@ -71,6 +73,8 @@ app.use('/api/bids/', bidRoutes)
 app.use('/api/aposts/', postRoutesA)
 app.use('/api/overviews/', overviewRoutes)
 app.use('/api/pay/', paymentRoutes)
+app.use('/api/email/', emailRoutes)
+
 
 
  

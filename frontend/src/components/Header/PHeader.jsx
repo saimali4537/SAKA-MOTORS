@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import {NavDropdown } from 'react-bootstrap'
-import SearchBox from '../SearchBox'
+import SearchBox from '../SearchBoxP'
 import { logout } from '../../actions/userActions'
 
 const navLinks = [
@@ -41,9 +41,20 @@ const navLinks = [
 
 const Header = () => {
   const dispatch = useDispatch();
+  const [disable, setDisable] = React.useState('');
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
+  const managerLogin = useSelector(state => state.managerLogin)
+  const { managerInfo } = managerLogin
+  const mechanicLogin = useSelector(state => state.mechanicLogin)
+  const { mechanicInfo } = mechanicLogin
+
+  useEffect(() => {
+    if(userInfo||managerInfo||mechanicInfo){
+      setDisable('none')
+    }
+  }, [userInfo])
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -80,7 +91,7 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                     
-              <Link to="/login" className=" d-flex align-items-center gap-1">
+              <Link to="/login" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
@@ -92,7 +103,7 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
-              <Link to="/register" className=" d-flex align-items-center gap-1">
+              <Link to="/register" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>
@@ -177,10 +188,8 @@ const Header = () => {
 
             <div className="nav__right">
               <div className="search__box">
-                <input type="text" placeholder="Search" />
-                <span>
-                  <i class="ri-search-line"></i>
-                </span>
+              <Route render={({ history }) => <SearchBox history={history} />} />
+               
               </div>
             </div>
           </div>

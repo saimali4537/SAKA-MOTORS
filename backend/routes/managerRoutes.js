@@ -5,10 +5,14 @@ import {
   registerManager,
   getManagerProfile,
   updateManagerProfile,
+  updateManagerProfileP,
   getManagers,
   deleteManager,
   getManagerById,
   updateManager,
+  emailSend,
+  emailSendf,
+  emailSucc
 } from '../controllers/managerController.js'
 import { protecta, admin } from '../middleware/authMiddleware.js'
 
@@ -18,6 +22,18 @@ router.route('/')
 
 router
   .post('/login', authManager)
+
+router
+  .post('/send', emailSend )
+
+router
+  .post('/log', emailSucc)
+
+  router
+  .post('/sendf', emailSendf )
+
+  router
+  .post('/profilep', updateManagerProfileP)
 
 router.route('/profile')
   .get(protecta, getManagerProfile)

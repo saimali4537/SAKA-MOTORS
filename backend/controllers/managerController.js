@@ -3,6 +3,8 @@ import Manager from '../models/managerModel.js';
 import Store from '../models/storeModel.js'
 import Product from '../models/productModel.js'
 import generateToken from '../utils/generateToken.js'
+import Otp from '../models/otpModel.js';
+import nodemailer from 'nodemailer'
 
 // @desc    Auth manager and get token
 // @route   POST /api/managers/login
@@ -106,7 +108,29 @@ const updateManagerProfile = asyncHandler(async (req, res) => {
     throw new Error('Manager not found')
   }
 })
+const updateManagerProfileP = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  const manager = await Manager.findOne({ email: email })
 
+  if (manager) {
+    manager.email = req.body.email || manager.email
+    if (req.body.password) {
+      manager.password = req.body.password
+    }
+
+    const updatedManager = await manager.save()
+
+    res.json({
+      _id: updatedManager._id,
+      email: updatedManager.email,
+      isManager: updatedManager.isManager,
+      token: generateToken(updatedManager._id)
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
 // @desc    Get all managers
 // @route   GET /api/managers
 // @access  Private/Manager
@@ -182,14 +206,116 @@ const updateManager = asyncHandler(async (req, res) => {
     throw new Error('Manager not found')
   }
 })
+const emailSend = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  let data = await Manager.findOne({ email: email })
+  const responseType={};
+  if(!data){
+    let otpcode = Math.floor((Math.random()*10000)+1)
+    let otpData= new Otp({
+     email: email,
+     code: otpcode,
+     expireIn: new Date().getTime()+300*1000
+})
+    let otpResponse = await otpData.save();
+    responseType.statusText='Success'
+    mailer(email,otpcode)
+    responseType.message='Please check your Email Id';
+  }else{
+      res.status(400)
+      throw new Error('User Already Exist')
+   
+  }
+  
+})
+const emailSendf = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  let data = await Manager.findOne({ email: email })
+  const responseType={};
+  if(data){
+    let otpcode = Math.floor((Math.random()*10000)+1)
+    let otpData= new Otp({
+     email: email,
+     code: otpcode,
+     expireIn: new Date().getTime()+300*1000
+})
+    let otpResponse = await otpData.save();
+    responseType.statusText='Success'
+    mailer(email,otpcode)
+    responseType.message='Please check your Email Id';
+  }else{
+      res.status(400)
+      throw new Error('Manager Not Exist')
+   
+  }
+  
+})
+
+const emailSucc = asyncHandler(async (req, res) => {
+  const { otp, email } = req.body
+  let data= await Otp.findOne({code:otp, email:email})
+  const response={}
+  if(data ){
+    let currentTime=new Date().getTime()
+    let diff=data.expirein - currentTime;
+    if(diff<0){
+      response.message='Token expire'
+      response.statusText='error'
+    }else{
+      response.message='Successful Login'
+      response.statusText='Success'
+      return res.json({
+      _id: data._id,
+      email: email,
+      token: generateToken(data._id)
+      })
+    }
+  }else{
+    res.status(500)
+      throw new Error('Invalid Otp')
+  }
+  res.status(200).json(response)
+
+})
+const mailer=(email, otp)=>{
+ 
+ 
+  let mailTransporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+          user: 'sakaamotors@gmail.com',
+          pass: 'jcmvqguxwbzxbpfw'
+      }
+  });
+   
+  let mailDetails = {
+      from: 'sakaamotors@gmail.com',
+      to: email,
+      subject: 'Your SAKA Motors Otp is: ',
+      text: otp+' is your one time password, Please donot share it with anyone'
+  };
+   
+  mailTransporter.sendMail(mailDetails, function(err, info) {
+      if(err) {
+        response.message='Error Occurs'
+      } else {
+        response.message='Email sent successfully'
+      }
+      res.status(200).json(response)
+  });
+}
 
 export {
   authManager,
   registerManager,
   getManagerProfile,
   updateManagerProfile,
+  updateManagerProfileP,
   getManagers,
   deleteManager,
   getManagerById,
-  updateManager
+  updateManager,
+  emailSend,
+  emailSendf,
+  emailSucc
 }

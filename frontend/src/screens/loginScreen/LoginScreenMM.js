@@ -61,7 +61,14 @@ const LoginScreenMM = ({ location, history }) => {
           Sign In
         </Button>
       </Form>
-
+      <Row className='py-3'>
+      <Col>
+          Forgot Password?{' '}
+          <Link to={redirect ? `/forgetm?redirect=${redirect}` : '/forgetm'}>
+            Forget
+          </Link>
+        </Col>
+      </Row>
       <Row className='py-3'>
         <Col>
           Become Mechanic?{' '}

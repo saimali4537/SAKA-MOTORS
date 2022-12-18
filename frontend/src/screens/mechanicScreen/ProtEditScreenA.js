@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
-import { listProtDetails, updateProt, createProt } from '../../actions/protActions'
+import { listProtDetails, updateProt, createProt } from '../../actions/protActionsA'
 import { PROT_UPDATE_RESET } from '../../constants/protConstants'
 
 const ProtEditScreen = ({ match, history }) => {
@@ -37,7 +37,7 @@ const ProtEditScreen = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PROT_UPDATE_RESET })
-      history.push('/protm')
+      history.push('/admin/protlist')
     } else {
       if (!prot.name || prot._id !== protId) {
         dispatch(listProtDetails(protId))
@@ -96,7 +96,7 @@ const ProtEditScreen = ({ match, history }) => {
 
   return (
     <><br/><br/>
-      <Link to='/mechanic/protlist' className='btn btn-light my-3'>
+      <Link to='/admin/protlist' className='btn btn-light my-3'>
         Go Back
       </Link>
       <FormContainer>

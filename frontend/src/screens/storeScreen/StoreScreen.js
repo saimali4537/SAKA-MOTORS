@@ -42,10 +42,10 @@ const StoreScreen = ({ match }) => {
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Link to='/store'>
-        <Button variant='secondary'>Search By Products</Button>
+        <Button variant='secondary'>View By Products</Button>
       </Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Link to='/storeby'>
-        <Button variant='secondary'>Search By Stores</Button>
+        <Button variant='secondary'>View By Stores</Button>
       </Link>
     </ButtonGroup>
       <h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

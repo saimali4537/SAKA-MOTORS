@@ -7,6 +7,8 @@ import { POST_CREATE_RESET } from '../../constants/postConstants'
 const PostCreation = ({ history, match }) => {
 
   const dispatch = useDispatch()
+  const [disable, setDisable] = React.useState(true);
+
   const postCreate = useSelector((state) => state.postCreate)
   const {
     loading: loadingCreate,
@@ -33,9 +35,8 @@ const PostCreation = ({ history, match }) => {
     successCreate,
     createdPost,
   ])
-  const i=0;
   const checkboxHandler = () => {
-    i=1;
+    setDisable(false)
   }
 
   const createPostHandler = () => {
@@ -81,7 +82,7 @@ Comply with law or with legal process. Try to protect against misuse or unauthor
 
         </Col>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createPostHandler}>
+          <Button className='my-3' onClick={createPostHandler} disabled={disable}>
             <i className='fas fa-plus'></i> Post Add Now
           </Button>
         </Col>

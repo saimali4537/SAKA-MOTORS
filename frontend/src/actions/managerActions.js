@@ -115,6 +115,105 @@ export const register = (name, email, password, isAdmin) => async (dispatch) => 
   }
 }
 
+export const send = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MANAGER_LOGIN_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/managers/send',
+      { email},
+      config
+    )
+    dispatch({
+      type: MANAGER_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('managerInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MANAGER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+export const sendf = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MANAGER_LOGIN_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/managers/sendf',
+      { email},
+      config
+    )
+    dispatch({
+      type: MANAGER_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('managerInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MANAGER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+export const auth = (otp, email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MANAGER_LOGIN_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/managers/log',
+      { otp, email},
+      config
+    )
+    dispatch({
+      type: MANAGER_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('managerInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MANAGER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
 export const getManagerDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -190,6 +289,45 @@ export const updateManagerProfile = (manager) => async (dispatch, getState) => {
     })
   }
 }
+export const updateUserProfileP = (email, password) => async (dispatch) => {
+  localStorage.removeItem('managerInfo')
+  dispatch({ type: MANAGER_LOGOUT })
+  try {
+    dispatch({
+      type: MANAGER_UPDATE_PROFILE_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(`/api/managers/profilep`, {email, password}, config)
+
+    dispatch({
+      type: MANAGER_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    })
+    dispatch({
+      type: MANAGER_LOGIN_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout1())
+    }
+    dispatch({
+      type: MANAGER_UPDATE_PROFILE_FAIL,
+      payload: message
+    })
+  }
+}
+
 
 export const listManagers = () => async (dispatch, getState) => {
   try {

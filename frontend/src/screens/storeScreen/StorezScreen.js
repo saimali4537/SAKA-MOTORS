@@ -60,7 +60,7 @@ const StorezScreen = ({ history, match }) => {
   return (
     
     <><br/><br/>
-      <Link className='btn btn-light my-3' to='/store'>
+      <Link className='btn btn-light my-3' to='/storeby'>
         Go Back
       </Link>
       {loading ? (

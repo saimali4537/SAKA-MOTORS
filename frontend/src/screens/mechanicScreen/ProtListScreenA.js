@@ -4,15 +4,15 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listMyProts, deleteProt, createProt } from '../../actions/protActions'
+import { listProts, deleteProt, createProt } from '../../actions/protActionsA'
 import { PROT_CREATE_RESET } from '../../constants/protConstants'
 
 const ProtListScreen = ({ history, match }) => {
 
   const dispatch = useDispatch()
 
-  const protListMy = useSelector((state) => state.protListMy)
-  const { loading, error, prots } = protListMy
+  const protList = useSelector((state) => state.protList)
+  const { loading, error, prots } = protList
 
   const protDelete = useSelector((state) => state.protDelete)
   const {
@@ -29,23 +29,23 @@ const ProtListScreen = ({ history, match }) => {
     prot: createdProt,
   } = protCreate
 
-  const mechanicLogin = useSelector((state) => state.mechanicLogin)
-  const { mechanicInfo } = mechanicLogin
+  const adminLogin = useSelector((state) => state.adminLogin)
+  const { adminInfo } = adminLogin
 
   useEffect(() => {
     dispatch({ type: PROT_CREATE_RESET })
 
-    if (!mechanicInfo || !mechanicInfo.isAdmin) {
-      history.push('/mechanic')
+    if (!adminInfo || !adminInfo.isAdmin) {
+      history.push('/admin')
     } if (successCreate) {
-      history.push(`/mechanic/prot/${createdProt._id}/edit`)
+      history.push(`/admin/prot/${createdProt._id}/edit`)
     } else {
-      dispatch(listMyProts(''))
+      dispatch(listProts(''))
     }
   }, [
     dispatch,
     history,
-    mechanicInfo,
+    adminInfo,
     successDelete,
     successCreate,
     createdProt,
@@ -66,12 +66,7 @@ const ProtListScreen = ({ history, match }) => {
     <><br/><br/>
       <Row className='align-items-center'>
         <Col>
-          <h1>Protfolio</h1>
-        </Col>
-        <Col className='text-right'>
-          <Button className='my-3' onClick={createProtHandler}>
-            <i className='fas fa-plus'></i> Create Profile
-          </Button>
+          <h1>Prots</h1>
         </Col>
       </Row>
       {loadingDelete && <Loader />}
@@ -108,7 +103,7 @@ const ProtListScreen = ({ history, match }) => {
                       <td>{prot.location}</td>
                       <td>{prot.store}</td>
                       <td>
-                        <LinkContainer to={`/mechanic/prot/${prot._id}/edit`}>
+                        <LinkContainer to={`/admin/prot/${prot._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

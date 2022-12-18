@@ -6,35 +6,47 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/managerActions'
+import { send } from '../../actions/managerActions'
+import { auth } from '../../actions/managerActions'
 
 const RegisterScreenSM = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [otp, setOtp] = useState('')
+  const [disable, setDisable] = React.useState(true);
+  const [disablel, setDisablel] = React.useState(false);
   const [message, setMessage] = useState(null)
+  const isAdmin = new Boolean(true);
+
 
   const dispatch = useDispatch()
 
-  const managerRegister = useSelector((state) => state.managerRegister)
-  const { loading, error, managerInfo } = managerRegister
-
+  const managerLogin = useSelector((state) => state.managerLogin)
+  const { loading, error, managerInfo } = managerLogin
   const redirect = location.search ? location.search.split('=')[2] : '/storecc'
 
   useEffect(() => {
     if (managerInfo) {
+      dispatch(register(name, email, password, isAdmin))
       history.push(redirect)
     }
   }, [history, managerInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    const isAdmin = new Boolean(true);
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password, isAdmin))
+      setDisable(false)
+      setDisablel(true)
+      dispatch(send(email))
     }
+  }
+  const submitHandlera = (e) => {
+    e.preventDefault()
+      dispatch(auth(otp, email))
   }
 
   return (
@@ -44,7 +56,7 @@ const RegisterScreenSM = ({ location, history }) => {
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
+      <Form>
 
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -53,6 +65,7 @@ const RegisterScreenSM = ({ location, history }) => {
             placeholder='Enter name'
             value={name}
             onChange={(e) => setName(e.target.value)}
+            disabled={disablel}
           ></Form.Control>
         </Form.Group>
 
@@ -63,18 +76,23 @@ const RegisterScreenSM = ({ location, history }) => {
             placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={disablel}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+  <Form.Label>Password</Form.Label>
+  <Form.Control
+   rules={["minLength","specialChar",
+           "number","capital","match"]}
+   minLength={8}
+    type='password'
+    placeholder='Enter password'
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    disabled={disablel}
+  ></Form.Control>
+</Form.Group>
 
         <Form.Group controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
@@ -83,10 +101,29 @@ const RegisterScreenSM = ({ location, history }) => {
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            disabled={disablel}
           ></Form.Control>
         </Form.Group>
+        <Form.Group controlId='otp'>
+          <Form.Label>Otp</Form.Label>
+          <Form.Control
+            type='otp'
+            placeholder='Please Enter Your Otp'
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            disabled={disable}
+            
+          >
+          </Form.Control>
+         
+        </Form.Group>
+        <Form.Group>
+        <Button type='submit' variant='primary' disabled={disable} onClick={submitHandlera}>
+          Verify
+        </Button>
+        </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary' disabled={disablel} onClick={submitHandler}>
           Register
         </Button>
       </Form>

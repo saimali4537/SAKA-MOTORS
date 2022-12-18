@@ -43,6 +43,9 @@ const Sidebar = () => {
 <LinkContainer to='/admin/bidlist'>
 <li class="nav-item mb-2"><a class="nav-link text-secondary" href="#"><i class="fa fa-handshake font-weight-bold"></i><span className="ml-3">&nbsp;Bids</span></a></li>
 </LinkContainer>
+<LinkContainer to='/admin/emaillist'>
+<li class="nav-item mb-2"><a class="nav-link text-secondary" href="#"><i class="fa fa-handshake font-weight-bold"></i><span className="ml-3">&nbsp;Emails</span></a></li>
+</LinkContainer>
             </ul>
        </div>
     )

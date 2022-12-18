@@ -7,6 +7,7 @@ import { PROT_CREATE_RESET } from '../../constants/protConstants'
 const ProtCreation = ({ history, match }) => {
 
   const dispatch = useDispatch()
+  const [disable, setDisable] = React.useState(true);
 
   const protCreate = useSelector((state) => state.protCreate)
   const {
@@ -16,28 +17,19 @@ const ProtCreation = ({ history, match }) => {
     prot: createdProt,
   } = protCreate
 
-  const mechanicLogin = useSelector((state) => state.mechanicLogin)
-  const { mechanicInfo } = mechanicLogin
-
   useEffect(() => {
     dispatch({ type: PROT_CREATE_RESET })
-
-    if (!mechanicInfo || !mechanicInfo.isAdmin) {
-      history.push('/registermm')
-    } if (successCreate) {
+    if (successCreate) {
       history.push(`/protca/prot/${createdProt._id}`)
-    } else {
-    }
+    } 
   }, [
     history,
-    mechanicInfo,
     successCreate,
     createdProt,
   ])
 
-  const i=0;
   const checkboxHandler = () => {
-    i=1;
+    setDisable(false)
   }
 
   const createProtHandler = () => {
@@ -81,7 +73,7 @@ Comply with law or with legal process. Try to protect against misuse or unauthor
         </Col>
 
         <Col className='text-right'>
-          <Button className='my-3' onClick={createProtHandler}>
+          <Button className='my-3' onClick={createProtHandler}  disabled={disable}>
             <i className='fas fa-plus'></i> Create Mechanic Profile
           </Button>
         </Col>

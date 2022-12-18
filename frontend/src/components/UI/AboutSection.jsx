@@ -10,14 +10,14 @@ const AboutSection = ({ aboutClass }) => {
       style={
         aboutClass === "aboutPage"
           ? { marginTop: "0px" }
-          : { marginTop: "280px" }
+          : { marginTop: "-150px" }
       }
     >
       <Container>
         <Row>
           <Col lg="6" md="6">
             <div className="about__section-content">
-              <h4 className="section__subtitle">About Us</h4>
+            <h4 className="section__subtitle">About Us</h4>
               <h2 className="section__title">Welcome to SAKA Motors</h2>
               <p className="section__description">
               SAKA Motors is platform which will provide unique experience to buy 

@@ -114,7 +114,105 @@ export const register = (name, email, password, isAdmin) => async (dispatch) => 
     })
   }
 }
+export const send = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MECHANIC_LOGIN_REQUEST,
+    })
 
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/mechanics/send',
+      { email},
+      config
+    )
+    dispatch({
+      type: MECHANIC_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('mechanicInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MECHANIC_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+export const sendf = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MECHANIC_LOGIN_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/mechanics/sendf',
+      { email},
+      config
+    )
+    dispatch({
+      type: MECHANIC_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('mechanicInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MECHANIC_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+export const auth = (otp, email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: MECHANIC_LOGIN_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/mechanics/log',
+      { otp, email},
+      config
+    )
+    dispatch({
+      type: MECHANIC_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('mechanicInfo', JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: MECHANIC_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
 export const getMechanicDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -176,6 +274,44 @@ export const updateMechanicProfile = (mechanic) => async (dispatch, getState) =>
       payload: data
     })
     localStorage.setItem('mechanicInfo', JSON.stringify(data))
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout1())
+    }
+    dispatch({
+      type: MECHANIC_UPDATE_PROFILE_FAIL,
+      payload: message
+    })
+  }
+}
+export const updateUserProfileP = (email, password) => async (dispatch) => {
+  localStorage.removeItem('mechanicInfo')
+  dispatch({ type: MECHANIC_LOGOUT })
+  try {
+    dispatch({
+      type: MECHANIC_UPDATE_PROFILE_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(`/api/mechanics/profilep`, {email, password}, config)
+
+    dispatch({
+      type: MECHANIC_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    })
+    dispatch({
+      type: MECHANIC_LOGIN_SUCCESS,
+      payload: data
+    })
   } catch (error) {
     const message =
       error.response && error.response.data.message

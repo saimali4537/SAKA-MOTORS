@@ -40,7 +40,7 @@ const emailSend = asyncHandler(async (req, res) => {
 })
     let otpResponse = await otpData.save();
     responseType.statusText='Success'
-    mailer('sakamotorad@gmail.com',otpcode)
+    mailer(email,otpcode)
     responseType.message='Please check your Email Id';
     return res.json({
       _id: data._id,
@@ -93,7 +93,7 @@ const mailer=(email, otp)=>{
       service: 'gmail',
       auth: {
           user: 'sakaamotors@gmail.com',
-          pass: 'wkjqbosprnkrkmxu'
+          pass: 'jcmvqguxwbzxbpfw'
       }
   });
    
