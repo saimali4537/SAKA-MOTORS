@@ -1,6 +1,5 @@
 .become__driver {
-  background: linear-gradient(direction, #a00202, hwb(235 0% 95% / 0.9)),
-    url("../assets/all-images/drive.jpg");
+  background: linear-gradient(#a00202, hwb(235 0% 95% / 0.9));
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
