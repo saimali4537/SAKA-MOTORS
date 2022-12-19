@@ -28,7 +28,7 @@ export const Navbar = () => {
             <Row>
               <Col lg="6" md="6" sm="6">
                 <div className="header__top__left">
-                <LinkContainer to='/'>
+                <LinkContainer to='/home'>
                   <span1>SAKA MOTORS ADMIN PANEL</span1>
                   </LinkContainer>
                  

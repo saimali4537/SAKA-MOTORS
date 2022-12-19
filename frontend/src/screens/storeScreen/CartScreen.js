@@ -26,7 +26,7 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
+    history.push('/store/logins?redirect=shipping')
   }
 
 
@@ -36,7 +36,7 @@ const CartScreen = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            Your cart is empty <Link to='/store'>Go Back</Link>
           </Message>
         ) : (
             <ListGroup variant='flush'>
@@ -47,7 +47,7 @@ const CartScreen = ({ match, location, history }) => {
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
                     <Col md={3}>
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                      <Link to={`/store/product/${item.product}`}>{item.name}</Link>
                     </Col>
                     <Col md={2}>Rs. {item.price}</Col>
                     <Col md={3}>{item.manager}</Col>

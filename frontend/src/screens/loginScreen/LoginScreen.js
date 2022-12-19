@@ -16,7 +16,7 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/home'
 
   useEffect(() => {
     if (userInfo) {
@@ -63,7 +63,7 @@ const LoginScreen = ({ location, history }) => {
       <Row className='py-3'>
       <Col>
           Forgot Password?{' '}
-          <Link to={redirect ? `/forget?redirect=${redirect}` : '/forget'}>
+          <Link to={redirect ? `/home/forget?redirect=${redirect}` : '/home/forget'}>
             Forget
           </Link>
         </Col>
@@ -72,7 +72,7 @@ const LoginScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          <Link to={redirect ? `/home/register?redirect=${redirect}` : '/home/register'}>
             Register
           </Link>
         </Col>

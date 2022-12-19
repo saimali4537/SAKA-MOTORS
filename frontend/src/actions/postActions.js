@@ -164,7 +164,7 @@ export const deletePost = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createPost = () => async (dispatch, getState) => {
+export const createPost = (post) => async (dispatch, getState) => {
   try {
     dispatch({
       type: POST_CREATE_REQUEST,
@@ -180,7 +180,7 @@ export const createPost = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/posts`, {}, config)
+    const { data } = await axios.put(`/api/posts/add`, post, config)
 
     dispatch({
       type: POST_CREATE_SUCCESS,
@@ -191,12 +191,13 @@ export const createPost = () => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
+  alert("Please Upload 4 pictures")
+
     if (message === 'Not authorized, token failed') {
       dispatch(logout())
     }
     dispatch({
       type: POST_CREATE_FAIL,
-      payload: message
     })
   }
 }

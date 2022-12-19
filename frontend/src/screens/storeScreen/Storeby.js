@@ -29,30 +29,31 @@ const Storeby = ({ match }) => {
       {!keyword ? (
         < ></>
       ) : (
-          <Link to='/' className='btn btn-light'>
+          <Link to='/home' className='btn btn-light'>
             Go Back
           </Link>
         )
       }
-      <br/><br/><ButtonGroup aria-label='Basic example'>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <ButtonGroup size="md" className="mb-2" style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>
       <Link to='/store'>
-        <Button variant='secondary'>View By Products</Button>
-      </Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to='/storeby'>
-        <Button variant='secondary'>View By Stores</Button>
-      </Link>
-    </ButtonGroup>
-      <h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest Stores</h1>
+        <Button>View By Products</Button>
+        </Link>
+        <div style={{
+        width:'10px',
+        height: 'auto',
+        display: 'inline-block'
+      }}/>
+        <Link to='/store/storeby'>
+        <Button>View By Stores</Button>
+        </Link>
+      </ButtonGroup>
+    <h1 style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>Latest Stores</h1>
       { loading ? (
         <Loader />
       ) : error ? (

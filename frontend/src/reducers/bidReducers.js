@@ -31,6 +31,10 @@ import {
   BID_LIST_MY_SUCCESS,
   BID_LIST_MY_FAIL,
   BID_LIST_MY_RESET,
+  BID_LIST_M_REQUEST,
+  BID_LIST_M_SUCCESS,
+  BID_LIST_M_FAIL,
+  BID_LIST_M_RESET,
 } from '../constants/bidConstants';
 
 export const bidListReducer = (state = { bids: [] }, action) => {
@@ -174,6 +178,28 @@ export const bidListMyReducer = (state = { bids: [] }, action) => {
         error: action.payload,
       }
     case BID_LIST_MY_RESET:
+      return { bids: [] }
+    default:
+      return state
+  }
+}
+export const bidListMReducer = (state = { bids: [] }, action) => {
+  switch (action.type) {
+    case BID_LIST_M_REQUEST:
+      return {
+        loading: true,
+      }
+    case BID_LIST_M_SUCCESS:
+      return {
+        loading: false,
+        bids: action.payload,
+      }
+    case BID_LIST_M_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case BID_LIST_M_RESET:
       return { bids: [] }
     default:
       return state

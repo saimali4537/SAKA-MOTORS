@@ -36,7 +36,7 @@ const StoreEditScreenM = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: STORE_UPDATE_RESET })
-      history.push('/manager/mystore')
+      history.push('/store/manager/mystore')
     } else {
       if (!store.name || store._id !== storeId) {
         dispatch(listStoreDetails(storeId))
@@ -91,10 +91,15 @@ const StoreEditScreenM = ({ match, history }) => {
       })
     )
   }
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
 
   return (
     <><br/><br/>
-      <Link to='/manager/mystore' className='btn btn-light my-3'>
+      <Link to='/store/manager/mystore' className='btn btn-light my-3'>
         Go Back
       </Link>
       <FormContainer>
@@ -111,6 +116,7 @@ const StoreEditScreenM = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -138,6 +144,7 @@ const StoreEditScreenM = ({ match, history }) => {
                   <Form.Label>Description</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={50}
                     placeholder='Enter description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -145,19 +152,27 @@ const StoreEditScreenM = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='category'>
-                  <Form.Label>Category</Form.Label>
+                <Form.Label>Category</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter category'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={category}
+          onChange={e => {
+            setCategory(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Category</option>
+        <option value="Spareparts">Spareparts</option>
+        <option value="Electrician Parts">Electrician Parts</option>
+        <option value="Body Paints">Body Paints</option>
+        </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='cnt'>
                   <Form.Label>Contact No</Form.Label>
                   <Form.Control
-                    type='text'
+                    type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter cnt'
                     value={cnt}
                     onChange={(e) => setCnt(e.target.value)}
@@ -165,13 +180,19 @@ const StoreEditScreenM = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='location'>
-                  <Form.Label>Location</Form.Label>
+                <Form.Label>Location</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter location'
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={location}
+          onChange={e => {
+            setLocation(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Location</option>
+        <option value="Wah Cantt">Wah Cantt</option>
+        <option value="Taxila">Taxila</option>
+        <option value="Rawalpindi">Rawalpindi</option>
+        </Form.Control>
                 </Form.Group>
 
 

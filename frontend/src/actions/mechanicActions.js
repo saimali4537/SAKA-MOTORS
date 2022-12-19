@@ -72,7 +72,7 @@ export const logout1 = () => dispatch => {
   dispatch({ type: MECHANIC_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: MECHANIC_LIST_RESET })
-  document.location.href = '/loginmm'
+  document.location.href = '/mechanic/loginmm'
 }
 
 export const register = (name, email, password, isAdmin) => async (dispatch) => {

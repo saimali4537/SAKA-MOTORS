@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { Table, Button, Row, Col } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listMyBooks, deleteBook, createBook } from '../../actions/bookActions'
+import { listMBooks, deleteBookU, createBook } from '../../actions/bookActions'
 import { BOOK_CREATE_RESET } from '../../constants/bookConstants'
 
 const BookListScreen = ({ history, match }) => {
 
   const dispatch = useDispatch()
 
-  const bookListMy = useSelector((state) => state.bookListMy)
-  const { loading, error, books } = bookListMy
+  const bookListM = useSelector((state) => state.bookListM)
+  const { loading, error, books } = bookListM
 
   const bookDelete = useSelector((state) => state.bookDelete)
   const {
@@ -28,23 +29,23 @@ const BookListScreen = ({ history, match }) => {
     book: createdBook,
   } = bookCreate
 
-  const mechanicLogin = useSelector((state) => state.mechanicLogin)
-  const { mechanicInfo } = mechanicLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     dispatch({ type: BOOK_CREATE_RESET })
 
-    if (!mechanicInfo || !mechanicInfo.isAdmin) {
-      history.push('/loginsm')
+    if (!userInfo ) {
+      history.push('/mechanic/loginm')
     } if (successCreate) {
       history.push(`/mechanic/book/${createdBook._id}/edit`)
     } else {
-      dispatch(listMyBooks(''))
+      dispatch(listMBooks(''))
     }
   }, [
     dispatch,
     history,
-    mechanicInfo,
+    userInfo,
     successDelete,
     successCreate,
     createdBook,
@@ -52,7 +53,7 @@ const BookListScreen = ({ history, match }) => {
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
-      dispatch(deleteBook(id))
+      dispatch(deleteBookU(id))
     }
   }
 
@@ -99,6 +100,11 @@ const BookListScreen = ({ history, match }) => {
                       <td>{book.address}</td>
                       <td>{book.requiretime}</td>
                       <td>
+                      <LinkContainer to={`/mechanic/book/${book._id}/edit`}>
+                          <Button variant='light' className='btn-sm'>
+                            <i className='fas fa-edit'></i>
+                          </Button>
+                        </LinkContainer>
                         <Button
                           variant='danger'
                           className='btn-sm'

@@ -43,7 +43,7 @@ const OrderScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/store/logins')
     }
 
     if (!order || successPay || successDeliver || order._id !== orderId) {
@@ -75,7 +75,7 @@ const Ontoken=token=>{
     console.log(res)
     alert("Payment Successed")
     dispatch(payOrder(orderid))
-    history.push(`/orderd/${order._id}`)
+    history.push(`/store/orderd/${order._id}`)
   }
   ).catch(err=> console.log(err))
 }
@@ -145,7 +145,7 @@ const Ontoken=token=>{
                                 />
                               </Col>
                               <Col>
-                                <Link to={`/product/${item.product}`}>
+                                <Link to={`/store/product/${item.product}`}>
                                   {item.name}
                                 </Link>
                               </Col>

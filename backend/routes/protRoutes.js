@@ -12,7 +12,8 @@ import {
 } from '../controllers/protController.js'
 import { protectm, mechanic, protectu } from '../middleware/authMiddleware.js'
 
-router.route('/').get(getProts).post(protectm, mechanic, createProt)
+router.route('/').get(getProts)
+router.route('/add').put(protectm, mechanic, createProt)
 router.route('/myprots').get(protectm, getMyProts)
 router.route('/:id/reviews').post(protectu, createProtReview)
 router.get('/top', getTopProts)

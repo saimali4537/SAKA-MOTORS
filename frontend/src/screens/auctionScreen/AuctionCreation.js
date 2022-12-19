@@ -24,9 +24,9 @@ const AuctionCreation = ({ history, match }) => {
     dispatch({ type: AUCTION_CREATE_RESET })
 
     if (!userInfo ) {
-      history.push('/login')
+      history.push('/home/login')
     } if (successCreate) {
-      history.push(`/auctions/${createdAuction._id}`)
+      history.push(`/auction/auctions/${createdAuction._id}`)
     } else {
     }
   }, [
@@ -39,7 +39,7 @@ const AuctionCreation = ({ history, match }) => {
     setDisable(false)
   }
   const createAuctionHandler = () => {
-    history.push(`/user/auctionlist`)
+    history.push('/auction/user/auction/add')
 
   }
 

@@ -19,9 +19,6 @@ const ProtCreation = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PROT_CREATE_RESET })
-    if (successCreate) {
-      history.push(`/protca/prot/${createdProt._id}`)
-    } 
   }, [
     history,
     successCreate,
@@ -33,7 +30,7 @@ const ProtCreation = ({ history, match }) => {
   }
 
   const createProtHandler = () => {
-    dispatch(createProt())
+    history.push('/mechanic/protadd')
   }
 
   return (

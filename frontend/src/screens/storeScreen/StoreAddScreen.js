@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
-import {  updateStore1} from '../../actions/storeActions'
-import { STORE_UPDATE_RESET } from '../../constants/storeConstants'
+import {  createStore1} from '../../actions/storeActions'
+import { STORE_CREATE_RESET } from '../../constants/storeConstants'
 
-const StoreEditScreen = ({ match, history }) => {
-  const storeId = match.params.id
-
+const StoreAddScreen = ({ match, history }) => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [description, setDescription] = useState('')
@@ -26,16 +24,16 @@ const StoreEditScreen = ({ match, history }) => {
   const storeDetails = useSelector((state) => state.storeDetails)
   const { loading, error, store } = storeDetails
 
-  const storeUpdate = useSelector((state) => state.storeUpdate)
+  const storeCreate = useSelector((state) => state.storeCreate)
   const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = storeUpdate
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+  } = storeCreate
 
   useEffect(() => {
-    if (successUpdate) {
-      dispatch({ type: STORE_UPDATE_RESET })
+    if (successCreate) {
+      dispatch({ type: STORE_CREATE_RESET })
       history.push('/store')
     } else {
         setName(store.name)
@@ -47,7 +45,7 @@ const StoreEditScreen = ({ match, history }) => {
         setLocation(store.location)
       }
     }
-  , [dispatch, history, storeId, store, successUpdate])
+  , [dispatch, history, store, successCreate])
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
@@ -75,8 +73,7 @@ const StoreEditScreen = ({ match, history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
-      updateStore1({
-        _id: storeId,
+      createStore1({
         name,
         image,
         description,
@@ -86,7 +83,11 @@ const StoreEditScreen = ({ match, history }) => {
       })
     )
   }
-
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
   return (
     <><br/><br/>
       <Link to='/manager/mystore' className='btn btn-light my-3'>
@@ -94,8 +95,8 @@ const StoreEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Create Your Store Now</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {loadingCreate && <Loader />}
+        {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -106,6 +107,7 @@ const StoreEditScreen = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -133,6 +135,7 @@ const StoreEditScreen = ({ match, history }) => {
                   <Form.Label>Description</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={50}
                     placeholder='Enter description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -140,19 +143,27 @@ const StoreEditScreen = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='category'>
-                  <Form.Label>Category</Form.Label>
+                <Form.Label>Category</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter category'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={category}
+          onChange={e => {
+            setCategory(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Category</option>
+        <option value="Spareparts">Spareparts</option>
+        <option value="Electrician Parts">Electrician Parts</option>
+        <option value="Body Paints">Body Paints</option>
+        </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='cnt'>
                   <Form.Label>Contact No</Form.Label>
                   <Form.Control
-                    type='text'
+                    type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter cnt'
                     value={cnt}
                     onChange={(e) => setCnt(e.target.value)}
@@ -160,13 +171,19 @@ const StoreEditScreen = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='location'>
-                  <Form.Label>Location</Form.Label>
+                <Form.Label>Location</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter location'
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={location}
+          onChange={e => {
+            setLocation(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Location</option>
+        <option value="Wah Cantt">Wah Cantt</option>
+        <option value="Taxila">Taxila</option>
+        <option value="Rawalpindi">Rawalpindi</option>
+        </Form.Control>
                 </Form.Group>
 
 
@@ -180,4 +197,4 @@ const StoreEditScreen = ({ match, history }) => {
   )
 }
 
-export default StoreEditScreen
+export default StoreAddScreen

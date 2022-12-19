@@ -65,29 +65,22 @@ const deleteStore = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createStore = asyncHandler(async (req, res) => {
+  const {
+    name,
+    image,
+    description,
+    category,
+    cnt,
+    location,
+  } = req.body
   const store = new Store({
-    name: 'Sample name',
-    image: '/images/sample.jpg',
-    user: req.admin._id,
-    description: 'Sample description',
-    category: 'Sample category',
-    cnt: '+92000000000',
-    location: 'Sample',
-    
-  })
-  const createdStore = await store.save()
-  res.status(201).json(createdStore)
-
-})
-const createStore1 = asyncHandler(async (req, res) => {
-  const store = new Store({
-    name: 'Sample name',
-    image: '/images/sample.jpg',
+    name: name,
+    image: image,
     user: req.manager._id,
-    description: 'Sample description',
-    category: 'Sample category',
-    cnt: '+92000000000',
-    location: 'Sample',
+    description: description,
+    category: category,
+    cnt: cnt,
+    location: location,
     
   })
 
@@ -194,7 +187,6 @@ export {
   getStoreById,
   deleteStore,
   createStore,
-  createStore1,
   updateStore,
   createStoreReview,
   getTopStores, 

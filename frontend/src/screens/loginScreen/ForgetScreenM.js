@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
-import { updateUserProfileP, logout1 } from '../../actions/mechanicActions'
-import { sendf } from '../../actions/mechanicActions'
-import { auth } from '../../actions/mechanicActions'
+import { updateUserProfileP, logout } from '../../actions/userActions'
+import { sendf } from '../../actions/userActions'
+import { auth } from '../../actions/userActions'
 
 
-const RegisterScreen = ({ location, history }) => {
+const ForgetScreenM = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -25,17 +25,17 @@ const RegisterScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const mechanicLogin = useSelector((state) => state.mechanicLogin)
-  const { loading, error, mechanicInfo } = mechanicLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[2] : '/loginmm'
+  const redirect = location.search ? location.search.split('=')[2] : '/mechanic/loginm'
 
   useEffect(() => {
     
-    if(mechanicInfo){
+    if(userInfo){
       setDisablef(false)
     }
-  }, [history, mechanicInfo, redirect])
+  }, [history, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -56,7 +56,7 @@ const RegisterScreen = ({ location, history }) => {
       setMessage('Passwords do not match')
     } else {
       dispatch(updateUserProfileP(email, password ))
-      dispatch(logout1())
+      dispatch(logout())
       history.push(redirect)
 
     }
@@ -139,19 +139,11 @@ const RegisterScreen = ({ location, history }) => {
 
         
       </Form>
-      <Row className='py-3'>
-      <Col>
-          Forgot Password?{' '}
-          <Link to={redirect ? `/forgetm?redirect=${redirect}` : '/forgetm'}>
-            Forget
-          </Link>
-        </Col>
-      </Row>
 
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          <Link to={redirect ? `/mechanic/loginm?redirect=${redirect}` : '/mechanic/loginm'}>
             Login
           </Link>
         </Col>
@@ -160,4 +152,4 @@ const RegisterScreen = ({ location, history }) => {
   )
 }
 
-export default RegisterScreen
+export default ForgetScreenM

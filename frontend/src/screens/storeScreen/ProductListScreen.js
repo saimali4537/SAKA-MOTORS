@@ -36,9 +36,9 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: PRODUCT_CREATE_RESET })
 
     if (!managerInfo || !managerInfo.isAdmin) {
-      history.push('/loginsm')
+      history.push('/store/loginsm')
     } if (successCreate) {
-      history.push(`/manager/product/${createdProduct._id}/edit`)
+      history.push(`/store/manager/product/${createdProduct._id}/edit`)
     } else {
       dispatch(listMyProducts(''))
     }
@@ -58,7 +58,7 @@ const ProductListScreen = ({ history, match }) => {
   }
 
   const createProductHandler = () => {
-    dispatch(createProduct())
+    history.push('/store/productadd')
   }
 
   return (
@@ -103,7 +103,7 @@ const ProductListScreen = ({ history, match }) => {
                       <td>{product.category}</td>
                       <td>{product.store}</td>
                       <td>
-                        <LinkContainer to={`/manager/product/${product._id}/edit`}>
+                        <LinkContainer to={`/store/manager/product/${product._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

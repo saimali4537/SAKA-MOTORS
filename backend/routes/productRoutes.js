@@ -13,7 +13,8 @@ import {
 } from '../controllers/productController.js'
 import { protectu, protect, manager } from '../middleware/authMiddleware.js'
 
-router.route('/').get(getProducts).post(protect, manager, createProduct)
+router.route('/').get(getProducts)
+router.route('/add').put(protect, manager, createProduct)
 router.route('/myproducts').get(protect, getMyProducts)
 router.route('/sproducts/:id').get( getSProducts)
 router.route('/:id/reviews').post(protectu, createProductReview)

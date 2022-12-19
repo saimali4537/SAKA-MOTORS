@@ -27,6 +27,9 @@ import {
   BOOK_LIST_MY_REQUEST,
   BOOK_LIST_MY_SUCCESS,
   BOOK_LIST_MY_FAIL,
+  BOOK_LIST_M_REQUEST,
+  BOOK_LIST_M_SUCCESS,
+  BOOK_LIST_M_FAIL,
 } from '../constants/bookConstants'
 import { logout1 } from './mechanicActions'
 import { logout } from './userActions'
@@ -107,7 +110,42 @@ export const listMyBooks = () => async (dispatch, getState) => {
     })
   }
 }
+export const listMBooks = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: BOOK_LIST_M_REQUEST,
+    })
 
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/books/mbooks`, config)
+
+    dispatch({
+      type: BOOK_LIST_M_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout1())
+    }
+    dispatch({
+      type: BOOK_LIST_M_FAIL,
+      payload: message
+    })
+  }
+}
 export const listBookDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: BOOK_DETAILS_REQUEST });
@@ -165,7 +203,43 @@ export const deleteBook = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createBook = (id) => async (dispatch, getState) => {
+export const deleteBookU = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: BOOK_DELETE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(`/api/books/user/${id}`, config)
+
+    dispatch({
+      type: BOOK_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout1())
+    }
+    dispatch({
+      type: BOOK_DELETE_FAIL,
+      payload: message
+    })
+  }
+}
+
+export const createBook = (id,book) => async (dispatch, getState) => {
   try {
     dispatch({
       type: BOOK_CREATE_REQUEST,
@@ -181,7 +255,7 @@ export const createBook = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/books/${id}`, {}, config)
+    const { data } = await axios.put(`/api/books/add/${id}`, book, config)
 
     dispatch({
       type: BOOK_CREATE_SUCCESS,

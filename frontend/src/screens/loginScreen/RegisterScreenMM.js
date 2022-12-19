@@ -25,7 +25,7 @@ const RegisterScreenMM = ({ location, history }) => {
   const mechanicLogin = useSelector((state) => state.mechanicLogin)
   const { loading, error, mechanicInfo } = mechanicLogin
 
-  const redirect = location.search ? location.search.split('=')[2] : '/protcc'
+  const redirect = location.search ? location.search.split('=')[2] : '/mechanic/protcc'
 
   useEffect(() => {
     if (mechanicInfo) {
@@ -81,18 +81,18 @@ const RegisterScreenMM = ({ location, history }) => {
         </Form.Group>
 
         <Form.Group controlId='password'>
-  <Form.Label>Password</Form.Label>
-  <Form.Control
-   rules={["minLength","specialChar",
-           "number","capital","match"]}
-   minLength={8}
-    type='password'
-    placeholder='Enter password'
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    disabled={disablel}
-  ></Form.Control>
-</Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+           rules={["minLength","specialChar",
+                   "number","capital","match"]}
+           minLength={8}
+            type='password'
+            placeholder='Enter password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={disablel}
+          ></Form.Control>
+        </Form.Group>
 
         <Form.Group controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
@@ -129,7 +129,7 @@ const RegisterScreenMM = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Register as User?{' '}
-          <Link to={redirect ? `/registerM?redirect=${redirect}` : '/registerm'}>
+          <Link to={redirect ? `/mechanic/registerM?redirect=${redirect}` : '/mechanic/registerm'}>
             Register
           </Link>
         </Col>

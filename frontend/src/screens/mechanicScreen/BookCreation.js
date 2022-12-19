@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import {  Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import {  createBook } from '../../actions/bookActions'
 import { BOOK_CREATE_RESET } from '../../constants/bookConstants'
 
 const BookCreation = ({ history, match }) => {
@@ -24,9 +23,7 @@ const BookCreation = ({ history, match }) => {
     dispatch({ type: BOOK_CREATE_RESET })
 
     if (!userInfo ) {
-      history.push('/login')
-    } if (successCreate) {
-      history.push(`/book/${createdBook._id}`)
+      history.push('/mechanic/loginm')
     } else {
     }
   }, [
@@ -39,9 +36,6 @@ const BookCreation = ({ history, match }) => {
     setDisable(false)
   }
 
-  const createBookHandler = () => {
-    dispatch(createBook(`${match.params.id}`))
-  }
 
   return (
     <><br/><br/>
@@ -80,9 +74,11 @@ Comply with law or with legal process. Try to protect against misuse or unauthor
           <label htmlFor="agree"> I agree to <b>terms and conditions</b></label>
         </div>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createBookHandler} disabled={disable}>
+        <a href={`/mechanic/book/add/${match.params.id}`}>
+          <Button className='my-3' disabled={disable}>
             <i className='fas fa-plus'></i> Book Mechanic Now
           </Button>
+        </a>
         </Col>
       </Row>
     </>

@@ -30,7 +30,7 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!managerInfo) {
-      history.push('/login')
+      history.push('/store/loginsm')
     } else {
       if (!manager || !manager.name || success) {
         dispatch({ type: MANAGER_UPDATE_PROFILE_RESET })

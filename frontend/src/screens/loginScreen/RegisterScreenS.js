@@ -133,7 +133,7 @@ const RegisterScreenS = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Become Seller?{' '}
-          <Link to={redirect ? `/registersm?redirect=${redirect}` : '/registersm'}>
+          <Link to={redirect ? `/store/registersm?redirect=${redirect}` : '/store/registersm'}>
             Register
           </Link>
         </Col>
@@ -141,7 +141,7 @@ const RegisterScreenS = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/logins?redirect=${redirect}` : '/logins'}>
+          <Link to={redirect ? `/store/logins?redirect=${redirect}` : '/store/logins'}>
             Login
           </Link>
         </Col>

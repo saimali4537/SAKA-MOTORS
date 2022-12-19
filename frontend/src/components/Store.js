@@ -7,11 +7,11 @@ import Rating from './Rating';
 const Store = ({ store }) => {
   return (
     <Card className='my p-2 fixed rounded h-100'>
-      <Link to={`/storez/${store._id}`}>
+      <Link to={`/store/storez/${store._id}`}>
         <Card.Img src={store.image} variant='top' className='h-6vw' />
       </Link>
       <Card.Body>
-        <Link to={`/storez/${store._id}`}>
+        <Link to={`/store/storez/${store._id}`}>
           <Card.Title as='div'>
             <strong>{store.name}</strong>
           </Card.Title>

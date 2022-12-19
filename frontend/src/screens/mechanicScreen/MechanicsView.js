@@ -44,7 +44,7 @@ const MechanicsView = ({ history, match }) => {
   }, [dispatch, match, successProtReview, prot._id])
 
   const bookHandler = () => {
-    history.push(`/bookc/${match.params.id}`)
+    history.push(`/mechanic/bookc/${match.params.id}`)
 
 
   }
@@ -61,7 +61,7 @@ const MechanicsView = ({ history, match }) => {
 
   return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn btn-light my-3' to='/mechanic'>
         Go Back
       </Link>
       {loading ? (
@@ -186,7 +186,7 @@ const MechanicsView = ({ history, match }) => {
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                      Please <Link to='/mechanic/loginm'>sign in</Link> to write a review{' '}
                     </Message>
                   )}
                 </ListGroup.Item>

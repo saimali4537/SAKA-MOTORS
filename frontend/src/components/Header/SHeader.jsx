@@ -14,7 +14,7 @@ import { logout1 } from '../../actions/managerActions'
 
 const navLinks = [
   {
-    path: "/",
+    path: "/home",
     display: "Home",
   },
   {
@@ -90,14 +90,14 @@ const SHeader = ({location,history}) => {
                   title={userInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profile' >
+                  <LinkContainer to='/store/profile' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/logins" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/store/logins" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
@@ -107,32 +107,32 @@ const SHeader = ({location,history}) => {
                   title={managerInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profilesm' >
+                  <LinkContainer to='/store/profilesm' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler1}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/loginsm" className=" d-flex align-items-center gap-1">
+              <Link to="/store/loginsm" className=" d-flex align-items-center gap-1">
                 
                 </Link>
             
                 )}
               {managerInfo && managerInfo.isAdmin && (
                 <NavDropdown title='Manager' id='managermenu'>
-                  <LinkContainer to='/manager/mystore'>
+                  <LinkContainer to='/store/manager/mystore'>
                     <NavDropdown.Item>My Store</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/manager/productlist'>
+                  <LinkContainer to='/store/manager/productlist'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/manager/orderlist'>
+                  <LinkContainer to='/store/manager/orderlist'>
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}
-              <Link to="/registers" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/store/registers" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>
@@ -148,7 +148,7 @@ const SHeader = ({location,history}) => {
             <Col lg="5" md="3" sm="8">
               <div className="logo">
                 <h1>
-                  <Link to="/" className=" d-flex align-items-center gap-6">
+                  <Link to="/home" className=" d-flex align-items-center gap-6">
                    
                     <img
               src={logo}
@@ -179,7 +179,7 @@ const SHeader = ({location,history}) => {
                  className=" d-flex align-items-center justify-content-end "
                >
                  <button className="header__btn btn ">
-                   <Link to="/storec">
+                   <Link to="/store/storec">
                    <i class="ri-shopping-cart-2-line"></i>Create Your Store
                    </Link>
                  </button>
@@ -194,7 +194,7 @@ const SHeader = ({location,history}) => {
               className=" d-flex align-items-center justify-content-end "
             >
               <button className="header__btn btn ">
-                <Link to="/cart">
+                <Link to="/store/cart">
                 <i class="ri-shopping-cart-2-line"></i>Cart
                 </Link>
               </button>

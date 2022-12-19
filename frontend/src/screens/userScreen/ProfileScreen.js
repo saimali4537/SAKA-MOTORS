@@ -32,7 +32,7 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/home/login')
     } else {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
@@ -154,12 +154,12 @@ const ProfileScreen = ({ location, history }) => {
                       </td>
                       <td>
                           {order.paymentMethod=='Stripe'?
-                        <LinkContainer to={`/order/${order._id}`}>
+                        <LinkContainer to={`/store/order/${order._id}`}>
                           <Button className='btn-sm' variant='light'>
                             Details
                       </Button>
                         </LinkContainer>:
-                        <LinkContainer to={`/orderd/${order._id}`}>
+                        <LinkContainer to={`/store/orderd/${order._id}`}>
                         <Button className='btn-sm' variant='light'>
                           Details
                     </Button>

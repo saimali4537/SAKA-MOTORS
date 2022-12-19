@@ -12,7 +12,7 @@ import { logout } from '../../actions/userActions'
 
 const navLinks = [
   {
-    path: "/",
+    path: "/home",
     display: "Home",
   },
   {
@@ -83,14 +83,14 @@ const Header = () => {
                   title={userInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profile' >
+                  <LinkContainer to='/home/profile' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/login" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/home/login" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
@@ -105,7 +105,7 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
-              <Link to="/register" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/home/register" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>
@@ -121,7 +121,7 @@ const Header = () => {
             <Col lg="7" md="3" sm="8">
               <div className="logo">
                 <h1>
-                  <Link to="/" className=" d-flex align-items-center gap-6">
+                  <Link to="/home" className=" d-flex align-items-center gap-6">
                    
                     <img
               src={logo}
@@ -154,7 +154,7 @@ const Header = () => {
               className=" d-flex align-items-center justify-content-end "
             >
               <button className="header__btn btn ">
-                <Link to="/apost">
+                <Link to="/posts/apost">
                 <i class="ri-file-add-fill"></i>Post An Ad
                 </Link>
               </button>

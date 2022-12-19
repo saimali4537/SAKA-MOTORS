@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
-import { updateUserProfileP, logout1 } from '../../actions/managerActions'
-import { sendf } from '../../actions/managerActions'
-import { auth } from '../../actions/managerActions'
+import { updateUserProfileP, logout } from '../../actions/userActions'
+import { sendf } from '../../actions/userActions'
+import { auth } from '../../actions/userActions'
 
 
-const RegisterScreen = ({ location, history }) => {
+const ForgetScreenS = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -25,17 +25,17 @@ const RegisterScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const managerLogin = useSelector((state) => state.managerLogin)
-  const { loading, error, managerInfo } = managerLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[2] : '/loginsm'
+  const redirect = location.search ? location.search.split('=')[2] : '/store/login'
 
   useEffect(() => {
     
-    if(managerInfo){
+    if(userInfo){
       setDisablef(false)
     }
-  }, [history, managerInfo, redirect])
+  }, [history, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -56,7 +56,7 @@ const RegisterScreen = ({ location, history }) => {
       setMessage('Passwords do not match')
     } else {
       dispatch(updateUserProfileP(email, password ))
-      dispatch(logout1())
+      dispatch(logout())
       history.push(redirect)
 
     }
@@ -143,7 +143,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          <Link to={redirect ? `/store/logins?redirect=${redirect}` : '/store/logins'}>
             Login
           </Link>
         </Col>
@@ -152,4 +152,4 @@ const RegisterScreen = ({ location, history }) => {
   )
 }
 
-export default RegisterScreen
+export default ForgetScreenS

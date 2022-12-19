@@ -34,18 +34,16 @@ const PostScreen = ({ history, match }) => {
   } = postReviewCreate
 
   useEffect(() => {
+    dispatch (listPostDetails(match.params.id))
     if (successPostReview) {
       setRating(0)
       setComment('')
     }
-    if (!post._id || post._id !== match.params.id) {
-      dispatch(listPostDetails(match.params.id))
-      dispatch({ type: POST_CREATE_REVIEW_RESET })
-    }
-  }, [dispatch, match, successPostReview, post._id])
+  
+  }, [dispatch, match, successPostReview])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(`/posts/cart/${match.params.id}?qty=${qty}`)
   }
 
   const submitHandler = (e) => {
@@ -197,7 +195,7 @@ const PostScreen = ({ history, match }) => {
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                      Please <Link to='/home/login'>sign in</Link> to write a review{' '}
                     </Message>
                   )}
                 </ListGroup.Item>

@@ -37,9 +37,9 @@ const MyStore = ({ history, match }) => {
     dispatch({ type: STORE_CREATE_RESET })
 
     if (!managerInfo || !managerInfo.isAdmin) {
-      history.push('/loginsm')
+      history.push('/store/loginsm')
     } if (successCreate) {
-      history.push(`/manager/store/${createdStore._id}/edit`)
+      history.push(`/store/manager/store/${createdStore._id}/edit`)
     } else {
       dispatch(listMyStores(''))
     }
@@ -105,7 +105,7 @@ const MyStore = ({ history, match }) => {
                       <td>{store.category}</td>
                       <td>{store.location}</td>
                       <td>
-                        <LinkContainer to={`/manager/store/${store._id}/edit`}>
+                        <LinkContainer to={`/store/manager/store/${store._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

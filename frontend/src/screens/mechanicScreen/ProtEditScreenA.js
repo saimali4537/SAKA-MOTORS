@@ -93,7 +93,11 @@ const ProtEditScreen = ({ match, history }) => {
       })
     )
   }
-
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
   return (
     <><br/><br/>
       <Link to='/admin/protlist' className='btn btn-light my-3'>
@@ -113,6 +117,7 @@ const ProtEditScreen = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -139,7 +144,9 @@ const ProtEditScreen = ({ match, history }) => {
                 <Form.Group controlId='Avg'>
                   <Form.Label>Average Rate</Form.Label>
                   <Form.Control
-                    type='text'
+                    type='number'
+                    maxLength = "4" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter Average Rate'
                     value={Avg}
                     onChange={(e) => setAvg(e.target.value)}
@@ -147,19 +154,27 @@ const ProtEditScreen = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='category'>
-                  <Form.Label>Category</Form.Label>
+                <Form.Label>Category</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter category'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={category}
+          onChange={e => {
+            setCategory(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Category</option>
+        <option value="Car Mechanic">Car Mechanic</option>
+        <option value="Electrician">Electrician</option>
+        <option value="Painter">Painter</option>
+        </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='cnt'>
                   <Form.Label>Contact No</Form.Label>
                   <Form.Control
-                    type='text'
+                    type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter cnt'
                     value={cnt}
                     onChange={(e) => setCnt(e.target.value)}
@@ -167,19 +182,26 @@ const ProtEditScreen = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='location'>
-                  <Form.Label>Location</Form.Label>
+                <Form.Label>Location</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter location'
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={location}
+          onChange={e => {
+            setLocation(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Location</option>
+        <option value="Wah Cantt">Wah Cantt</option>
+        <option value="Taxila">Taxila</option>
+        <option value="Rawalpindi">Rawalpindi</option>
+        </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='store'>
                   <Form.Label>Store</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={15}
                     placeholder='Enter Store Name'
                     value={store}
                     onChange={(e) => setStore(e.target.value)}

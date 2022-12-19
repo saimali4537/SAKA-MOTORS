@@ -12,15 +12,20 @@ const ShippingScreen = ({ history }) => {
   const [address, setAddress] = useState(shippingAddress.address)
   const [city, setCity] = useState(shippingAddress.city)
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-  const [country, setCountry] = useState(shippingAddress.country)
+  const [country, setCountry] = useState("Pakistan")
 
   const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(saveShippingAddress({ address, city, postalCode, country }))
-    history.push('/payment')
+    history.push('/store/payment')
   }
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
 
   return (
     <FormContainer>
@@ -32,6 +37,7 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>Address</Form.Label>
           <Form.Control
             type='text'
+            maxLength={40}
             placeholder='Enter address'
             value={address}
             required
@@ -40,20 +46,27 @@ const ShippingScreen = ({ history }) => {
         </Form.Group>
 
         <Form.Group controlId='city'>
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter city'
-            value={city}
-            required
-            onChange={(e) => setCity(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        <Form.Label>City</Form.Label>
+                  <Form.Control
+          as="select"
+          value={city}
+          onChange={e => {
+            setCity(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose your City</option>
+        <option value="Wah Cantt">Wah Cantt</option>
+        <option value="Taxila">Taxila</option>
+        <option value="Rawalpindi">Rawalpindi</option>
+        </Form.Control>
+                </Form.Group>
 
         <Form.Group controlId='postalCode'>
           <Form.Label>Postal Code</Form.Label>
           <Form.Control
-            type='text'
+            type='number'
+            maxLength = "6" 
+            onInput={maxLengthCheck}
             placeholder='Enter postal code'
             value={postalCode}
             required
@@ -65,10 +78,11 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>Country</Form.Label>
           <Form.Control
             type='text'
-            placeholder='Enter country'
+            placeholder='Pakistan'
             value={country}
             required
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={(e) => setCountry("Pakistan")}
+            disabled
           ></Form.Control>
         </Form.Group>
 

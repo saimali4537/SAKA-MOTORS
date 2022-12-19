@@ -64,7 +64,7 @@ const LoginScreenMM = ({ location, history }) => {
       <Row className='py-3'>
       <Col>
           Forgot Password?{' '}
-          <Link to={redirect ? `/forgetm?redirect=${redirect}` : '/forgetm'}>
+          <Link to={redirect ? `/mechanic/forgetmm?redirect=${redirect}` : '/mechanic/forgetmm'}>
             Forget
           </Link>
         </Col>
@@ -72,7 +72,7 @@ const LoginScreenMM = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Become Mechanic?{' '}
-          <Link to={redirect ? `/registermm?redirect=${redirect}` : '/registermm'}>
+          <Link to={redirect ? `/mechanic/registermm?redirect=${redirect}` : '/mechanic/registermm'}>
             Register
           </Link>
         </Col>

@@ -84,7 +84,7 @@ const AuctionsScreen = ({ history, match }) => {
     )
   }
   const bidHandler = () => {
-    history.push(`/bidc/${match.params.id}`)
+    history.push(`/auction/bidc/${match.params.id}`)
 
   }
   const [disable, setDisable] = React.useState(false);

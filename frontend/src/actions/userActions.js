@@ -172,7 +172,7 @@ export const logout = () => dispatch => {
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET })
-  document.location.href = '/login'
+  document.location.href = '/home/login'
 }
 export const logouts = () => dispatch => {
   localStorage.removeItem('userInfo')
@@ -183,7 +183,7 @@ export const logouts = () => dispatch => {
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET })
-  document.location.href = '/logins'
+  document.location.href = '/store/logins'
 }
 export const logoutm = () => dispatch => {
   localStorage.removeItem('userInfo')
@@ -194,7 +194,7 @@ export const logoutm = () => dispatch => {
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET })
-  document.location.href = '/loginm'
+  document.location.href = '/mechanic/loginm'
 }
 
 export const register = (name, email, password, isManager) => async (dispatch) => {

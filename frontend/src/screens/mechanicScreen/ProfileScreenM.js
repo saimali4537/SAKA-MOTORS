@@ -30,7 +30,7 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!mechanicInfo) {
-      history.push('/loginm')
+      history.push('/mechanic/loginm')
     } else {
       if (!mechanic || !mechanic.name || success) {
         dispatch({ type: MECHANIC_UPDATE_PROFILE_RESET })

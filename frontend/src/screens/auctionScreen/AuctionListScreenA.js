@@ -31,16 +31,16 @@ const AuctionListScreenA = ({ history }) => {
     auction: createdAuction,
   } = auctionCreate
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const adminLogin = useSelector((state) => state.adminLogin)
+  const { adminInfo } = adminLogin
   
   
   useEffect(() => {
     dispatch({ type: AUCTION_CREATE_RESET })
 
    
-    if (!userInfo ) {
-      history.push('/login')
+    if (!adminInfo ) {
+      history.push('/admin')
     } if (successCreate) {
       history.push(`/auctions/${createdAuction._id}`)
     } else {
@@ -50,7 +50,7 @@ const AuctionListScreenA = ({ history }) => {
   }, [
     dispatch,
     history,
-    userInfo,
+    adminInfo,
     auction,
     successDelete,
     successCreate,
@@ -105,7 +105,7 @@ const AuctionListScreenA = ({ history }) => {
                       <td>{auction.price}</td>
                       <td>{auction.cnt}</td>
                       <td>{auction.location}</td> 
-                      <td>{auction.user}</td>  
+                      <td>{auction.admin}</td>  
 
                                     
                       
@@ -113,7 +113,7 @@ const AuctionListScreenA = ({ history }) => {
                      
                       <td>
                       
-                        <LinkContainer to={`/user/auction/${auction._id}/edit`}>
+                        <LinkContainer to={`/admin/auction/${auction._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

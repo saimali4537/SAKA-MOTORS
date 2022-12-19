@@ -14,9 +14,9 @@ const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
 
   if (!cart.shippingAddress.address) {
-    history.push('/shipping')
+    history.push('/store/shipping')
   } else if (!cart.paymentMethod) {
-    history.push('/payment')
+    history.push('/store/payment')
   }
 
   //   Calculate prices
@@ -44,10 +44,10 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       if(order.paymentMethod=='Stripe'){
-        history.push(`/order/${order._id}`)
+        history.push(`/store/order/${order._id}`)
       }
       else{
-        history.push(`/orderd/${order._id}`)
+        history.push(`/store/orderd/${order._id}`)
       }
       dispatch({ type: USER_DETAILS_RESET })
       dispatch({ type: ORDER_CREATE_RESET })
@@ -114,7 +114,7 @@ const PlaceOrderScreen = ({ history }) => {
                             />
                           </Col>
                           <Col>
-                            <Link to={`/product/${item.product}`}>
+                            <Link to={`/store/product/${item.product}`}>
                               {item.name}
                               
                             </Link>

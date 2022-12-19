@@ -58,7 +58,7 @@ const ProtListScreen = ({ history, match }) => {
   }
 
   const createProtHandler = () => {
-    dispatch(createProt())
+    history.push('/mechanic/protadd')
   }
 
   return (

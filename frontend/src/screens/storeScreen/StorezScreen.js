@@ -44,7 +44,7 @@ const StorezScreen = ({ history, match }) => {
   }, [dispatch, match, successStoreReview, store._id])
 
   const visitHandler = () => {
-    history.push(`/sstores/${match.params.id}`)
+    history.push(`/store/sstores/${match.params.id}`)
   }
 
   const submitHandler = (e) => {
@@ -192,7 +192,7 @@ const StorezScreen = ({ history, match }) => {
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                      Please <Link to='/store/logins'>sign in</Link> to write a review{' '}
                     </Message>
                   )}
                 </ListGroup.Item>

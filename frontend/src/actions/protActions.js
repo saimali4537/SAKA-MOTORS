@@ -141,7 +141,7 @@ export const deleteProt = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createProt = () => async (dispatch, getState) => {
+export const createProt = (prot) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PROT_CREATE_REQUEST,
@@ -157,7 +157,7 @@ export const createProt = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/prots`, {}, config)
+    const { data } = await axios.put(`/api/prots/add`, prot, config)
 
     dispatch({
       type: PROT_CREATE_SUCCESS,

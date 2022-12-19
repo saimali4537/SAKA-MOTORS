@@ -28,7 +28,7 @@ const OrderScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (!managerInfo) {
-      history.push('/loginsm')
+      history.push('/store/loginsm')
     }
 
 
@@ -115,7 +115,7 @@ const OrderScreen = ({ match, history }) => {
                                 />
                               </Col>
                               <Col>
-                                <Link to={`/product/${item.product}`}>
+                                <Link to={`/store/product/${item.product}`}>
                                   {item.name}
                                 </Link>
                               </Col>

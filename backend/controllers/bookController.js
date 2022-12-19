@@ -58,14 +58,21 @@ const deleteBook = asyncHandler(async (req, res) => {
 // @route   POST /api/books
 // @access  Private/Admin
 const createBook = asyncHandler(async (req, res) => {
+  const {
+    name,
+    description,
+    contact,
+    address,
+    requiretime,
+  } = req.body
   const book = new Book({
     user: req.user._id,
     prot: req.params.id,
-    name: 'Sample name',
-    description: 'Sample description',
-    contact: 'Sample contact',
-    address: 'Sample address',
-    requiretime: 'Sample time',
+    name: name,
+    description: description,
+    contact: contact,
+    address: address,
+    requiretime: requiretime,
   
     
   })
@@ -119,6 +126,11 @@ const getMyBooks = asyncHandler(async (req, res) => {
   res.json(books)
 })
 
+const getMBooks = asyncHandler(async (req, res) => {
+  const books= await Book.find({user: req.user._id})
+  res.json(books)
+})
+
 const getSBooks = asyncHandler(async (req, res) => {
   const prot = await Prot.findById(req.mechanic._id)
   const books = await Book.find({ user: prot.user._id})
@@ -134,5 +146,6 @@ export {
   updateBook,
   getTopBooks,
   getMyBooks,
-  getSBooks
+  getSBooks,
+  getMBooks
 }

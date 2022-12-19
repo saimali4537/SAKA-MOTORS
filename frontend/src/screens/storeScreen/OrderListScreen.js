@@ -19,7 +19,7 @@ const OrderListScreen = ({ history }) => {
     if (managerInfo && managerInfo.isAdmin) {
       dispatch(listMOrders())
     } else {
-      history.push('/loginsm')
+      history.push('/store/loginsm')
     }
   }, [dispatch, history, managerInfo])
 
@@ -65,7 +65,7 @@ const OrderListScreen = ({ history }) => {
                         )}
                     </td>
                     <td>
-                      <LinkContainer to={`/manager/order/${order._id}`}>
+                      <LinkContainer to={`/store/manager/order/${order._id}`}>
                         <Button variant='light' className='btn-sm'>
                           Details
                     </Button>

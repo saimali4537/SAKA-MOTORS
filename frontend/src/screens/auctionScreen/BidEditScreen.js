@@ -74,10 +74,15 @@ const BidEditScreen = ({ match, history }) => {
       })
     )
   }
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
 
   return (
     <><br/><br/>
-      <Link to='/prot/:id' className='btn btn-light my-3'>
+      <Link to='/auction/prot/:id' className='btn btn-light my-3'>
         Go Back
       </Link>
       <FormContainer>
@@ -94,6 +99,7 @@ const BidEditScreen = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter your name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -103,7 +109,9 @@ const BidEditScreen = ({ match, history }) => {
                 <Form.Group controlId='cnt'>
                   <Form.Label>Contact No</Form.Label>
                   <Form.Control
-                    type='text'
+                   type='number'
+                   maxLength = "11" 
+                   onInput={maxLengthCheck}
                     placeholder='Enter your Contact No'
                     value={cnt}
                     onChange={(e) => setCnt(e.target.value)}
@@ -114,6 +122,8 @@ const BidEditScreen = ({ match, history }) => {
                   <Form.Label>Bid Value</Form.Label>
                   <Form.Control
                     type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter your Bid Amount'
                     value={bide}
                     onChange={(e) => setBide(e.target.value)}

@@ -19,10 +19,6 @@ const StoreCreation = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: STORE_CREATE_RESET })
-    if (successCreate) {
-      history.push(`/storeca/store/${createdStore._id}`)
-    } else {
-    }
   }, [
     history,
     successCreate,
@@ -33,7 +29,7 @@ const StoreCreation = ({ history, match }) => {
     setDisable(false)
   }
   const createStoreHandler = () => {
-    dispatch(createStore1())
+    history.push('/store/storeca/storeadd')
   }
 
   return (

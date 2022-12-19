@@ -25,7 +25,7 @@ const RegisterScreenSM = ({ location, history }) => {
 
   const managerLogin = useSelector((state) => state.managerLogin)
   const { loading, error, managerInfo } = managerLogin
-  const redirect = location.search ? location.search.split('=')[2] : '/storecc'
+  const redirect = location.search ? location.search.split('=')[2] : '/store/storecc'
 
   useEffect(() => {
     if (managerInfo) {
@@ -130,7 +130,7 @@ const RegisterScreenSM = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Register as User?{' '}
-          <Link to={redirect ? `/registers?redirect=${redirect}` : '/registers'}>
+          <Link to={redirect ? `/store/registers?redirect=${redirect}` : '/store/registers'}>
             Register
           </Link>
         </Col>

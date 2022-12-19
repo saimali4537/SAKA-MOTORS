@@ -57,15 +57,24 @@ const deleteProt = asyncHandler(async (req, res) => {
 // @route   POST /api/prots
 // @access  Private/Admin
 const createProt = asyncHandler(async (req, res) => {
+  const {
+    name,
+    Avg,
+    location,
+    image,
+    store,
+    category,
+    cnt,
+  } = req.body
   const prot = new Prot({
-    name: 'Sample name',
+    name: name,
     user: req.mechanic._id,
-    Avg: 0,
-    location: 'Sample location',
-    image: '/images/sample.jpg',
-    store: 'Sample Store',
-    category: 'Sample category',
-    cnt: '+923000000000',
+    Avg: Avg,
+    location: location,
+    image: image,
+    store: store,
+    category: category,
+    cnt: cnt,
     numReviews: 0,
     
   })

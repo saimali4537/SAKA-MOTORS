@@ -21,7 +21,7 @@ import {
 } from '../constants/storeConstants'
 import { logout1 } from './managerActions'
 
-export const createStore1 = () => async (dispatch, getState) => {
+export const createStore1 = (store) => async (dispatch, getState) => {
   try {
     dispatch({
       type: STORE_CREATE_REQUEST,
@@ -37,7 +37,7 @@ export const createStore1 = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/stores`, {}, config)
+    const { data } = await axios.put(`/api/stores/add`, store, config)
 
     dispatch({
       type: STORE_CREATE_SUCCESS,

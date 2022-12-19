@@ -44,7 +44,7 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match, successProductReview, product._id])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(`/store/cart/${match.params.id}?qty=${qty}`)
   }
 
   const submitHandler = (e) => {
@@ -209,7 +209,7 @@ const ProductScreen = ({ history, match }) => {
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                      Please <Link to='/store/logins'>sign in</Link> to write a review{' '}
                     </Message>
                   )}
                 </ListGroup.Item>

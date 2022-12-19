@@ -14,7 +14,7 @@ import { logout1 } from '../../actions/mechanicActions'
 
 const navLinks = [
   {
-    path: "/",
+    path: "/home",
     display: "Home",
   },
   {
@@ -90,14 +90,17 @@ const managerLogin = useSelector(state => state.managerLogin)
                   title={userInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profile' >
+                  <LinkContainer to='/home/profile' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/mechanic/mbooks' >
+                    <NavDropdown.Item>My Booked</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/loginm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/mechanic/loginm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
@@ -107,14 +110,14 @@ const managerLogin = useSelector(state => state.managerLogin)
                   title={mechanicInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profilem' >
+                  <LinkContainer to='/mechanic/profilem' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler1}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/loginmm" className=" d-flex align-items-center gap-1">
+              <Link to="/mechanic/loginmm" className=" d-flex align-items-center gap-1">
                 
                 </Link>
             
@@ -124,12 +127,12 @@ const managerLogin = useSelector(state => state.managerLogin)
                   <LinkContainer to='/mechanic/bookings'>
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/protm' >
+                  <LinkContainer to='/mechanic/protm' >
                     <NavDropdown.Item>Protfolio</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}
-              <Link to="/registerm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/mechanic/registerm" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>
@@ -145,7 +148,7 @@ const managerLogin = useSelector(state => state.managerLogin)
             <Col lg="7" md="3" sm="8">
               <div className="logo">
                 <h1>
-                  <Link to="/" className=" d-flex align-items-center gap-6">
+                  <Link to="/home" className=" d-flex align-items-center gap-6">
                    
                     <img
               src={logo}
@@ -178,7 +181,7 @@ const managerLogin = useSelector(state => state.managerLogin)
               className=" d-flex align-items-center justify-content-end "
             >
               <button className="header__btn btn ">
-                <Link to="/apost">
+                <Link to="/posts/apost">
                 <i class="ri-file-add-fill"></i>Post An Ad
                 </Link>
               </button>

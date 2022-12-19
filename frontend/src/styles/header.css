@@ -143,9 +143,9 @@
 }
 
 .nav__item:hover {
-  color: #252525e9;
+  transform: scale(1.5);
+  color: #f77104e9;
 }
-
 
 .search__box {
   border: 1px solid #a00202;
@@ -171,11 +171,8 @@
   color: rgba(255, 255, 255, 0.555);
   cursor: pointer;
 }
-
-.nav__active {
-  color: #911010e9;
-  font-weight: bold;
-  
+.nav-link.active {
+  color: rgb(2, 2, 2);
 }
 
 @media only screen and (max-width: 768px) {
@@ -219,10 +216,25 @@
 
   .menu__active {
     display: block;
+    color: #ff7606;
   }
 }
+
+
 .Navvvv{
   font-family: 'Roboto', sans-serif;
   color: #ffffff !important;
   margin-right: 2em;
 }
+
+.nav__active {
+  color: #911010e9;
+  font-weight: bold;
+  
+}
+
+.active{
+  color:#000000;
+  font-weight: bold;
+ }
+

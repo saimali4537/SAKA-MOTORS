@@ -27,7 +27,7 @@ const RegisterScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/home'
 
   useEffect(() => {
     if(userInfo){
@@ -82,19 +82,19 @@ const RegisterScreen = ({ location, history }) => {
             disabled={disablel}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-           rules={["minLength","specialChar",
-                   "number","capital","match"]}
+           rules={["length","specialChar","number","capital","match"]}
            minLength={8}
+           
             type='password'
             placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={disablel}
-          ></Form.Control>
+          >
+          </Form.Control>
         </Form.Group>
 
         <Form.Group controlId='confirmPassword'>
@@ -107,6 +107,7 @@ const RegisterScreen = ({ location, history }) => {
             disabled={disablel}
           ></Form.Control>
         </Form.Group>
+        
         <Form.Group controlId='otp'>
           <Form.Label>Otp</Form.Label>
           <Form.Control
@@ -136,7 +137,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          <Link to={redirect ? `/home/login?redirect=${redirect}` : '/home/login'}>
             Login
           </Link>
         </Col>

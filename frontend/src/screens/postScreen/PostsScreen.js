@@ -27,7 +27,7 @@ const PostsScreen = ({ match }) => {
       {!keyword ? (
         <></>
       ) : (
-          <Link to='/' className='btn btn-light'>
+          <Link to='/home' className='btn btn-light'>
             Go Back
           </Link>
         )

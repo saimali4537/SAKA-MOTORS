@@ -164,7 +164,7 @@ export const deleteAuction = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createAuction = () => async (dispatch, getState) => {
+export const createAuction = (auction) => async (dispatch, getState) => {
   try {
     dispatch({
       type: AUCTION_CREATE_REQUEST,
@@ -180,7 +180,7 @@ export const createAuction = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/auctions`, {}, config)
+    const { data } = await axios.put(`/api/auctions/add`, auction, config)
 
     dispatch({
       type: AUCTION_CREATE_SUCCESS,
@@ -201,20 +201,16 @@ export const createAuction = () => async (dispatch, getState) => {
   }
 }
 
-export const updateAuction = (auction) => async (dispatch, getState) => {
+export const updateAuction = (auction) => async (dispatch) => {
   try {
     dispatch({
       type: AUCTION_UPDATE_REQUEST,
     })
 
-    const {
-      userLogin: { userInfo },
-    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
       },
     }
 

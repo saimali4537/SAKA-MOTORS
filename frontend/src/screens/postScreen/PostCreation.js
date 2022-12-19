@@ -6,9 +6,9 @@ import { POST_CREATE_RESET } from '../../constants/postConstants'
 
 const PostCreation = ({ history, match }) => {
 
-  const dispatch = useDispatch()
   const [disable, setDisable] = React.useState(true);
 
+  const dispatch = useDispatch()
   const postCreate = useSelector((state) => state.postCreate)
   const {
     loading: loadingCreate,
@@ -21,14 +21,10 @@ const PostCreation = ({ history, match }) => {
   const { userInfo } = userLogin
 
   useEffect(() => {
-    dispatch({ type: POST_CREATE_RESET })
 
     if (!userInfo ) {
-      history.push('/login')
-    } if (successCreate) {
-      history.push(`/posts/${createdPost._id}`)
-    } else {
-    }
+      history.push('/home/login')
+    } 
   }, [
     history,
     userInfo,
@@ -40,7 +36,7 @@ const PostCreation = ({ history, match }) => {
   }
 
   const createPostHandler = () => {
-      dispatch(createPost(`${match.params.id}`))
+   
 
   }
 
@@ -82,9 +78,11 @@ Comply with law or with legal process. Try to protect against misuse or unauthor
 
         </Col>
         <Col className='text-right'>
+        <a href={'/posts/user/post/add'}>
           <Button className='my-3' onClick={createPostHandler} disabled={disable}>
             <i className='fas fa-plus'></i> Post Add Now
           </Button>
+          </a>
         </Col>
       </Row>
     </>

@@ -10,7 +10,7 @@ import { sendf } from '../../actions/userActions'
 import { auth } from '../../actions/userActions'
 
 
-const RegisterScreen = ({ location, history }) => {
+const ForgetScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -28,7 +28,7 @@ const RegisterScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[2] : '/login'
+  const redirect = location.search ? location.search.split('=')[2] : '/home/login'
 
   useEffect(() => {
     
@@ -143,7 +143,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          <Link to={redirect ? `/home/login?redirect=${redirect}` : '/home/login'}>
             Login
           </Link>
         </Col>
@@ -152,4 +152,4 @@ const RegisterScreen = ({ location, history }) => {
   )
 }
 
-export default RegisterScreen
+export default ForgetScreen

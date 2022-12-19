@@ -4,8 +4,6 @@ import {
   getStores,
   getStoreById,
   deleteStore,
-  createStore,
-  createStore1,
   updateStore,
   createStoreReview,
   getTopStores,
@@ -14,7 +12,7 @@ import {
 import { protecta, admin, protect, manager } from '../middleware/authMiddleware.js'
 
 
-router.route('/').get(getStores).post(protect, manager, createStore1).post(protecta, admin, createStore)
+router.route('/').get(getStores)
 router.route('/mystores').get(protect, getMyStores)
 router.route('/:id/reviews').post(protecta, createStoreReview)
 router.get('/top', getTopStores)

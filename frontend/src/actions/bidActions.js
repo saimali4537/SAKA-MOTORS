@@ -27,6 +27,9 @@ import {
   BID_LIST_MY_REQUEST,
   BID_LIST_MY_SUCCESS,
   BID_LIST_MY_FAIL,
+  BID_LIST_M_REQUEST,
+  BID_LIST_M_SUCCESS,
+  BID_LIST_M_FAIL,
 } from '../constants/bidConstants'
 import { logout } from './userActions'
 
@@ -106,6 +109,42 @@ export const listMyBids = () => async (dispatch, getState) => {
     })
   }
 }
+export const listMBids = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: BID_LIST_M_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/bids/mbids`, config)
+
+    dispatch({
+      type: BID_LIST_M_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: BID_LIST_M_FAIL,
+      payload: message
+    })
+  }
+}
 
 export const listBidDetails = (id) => async (dispatch) => {
   try {
@@ -164,7 +203,7 @@ export const deleteBid = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createBid = (id) => async (dispatch, getState) => {
+export const createBid = (id, bid) => async (dispatch, getState) => {
   try {
     dispatch({
       type: BID_CREATE_REQUEST,
@@ -180,7 +219,7 @@ export const createBid = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/bids/${id}`, {}, config)
+    const { data } = await axios.put(`/api/bids/add/${id}`, bid, config)
 
     dispatch({
       type: BID_CREATE_SUCCESS,
@@ -192,6 +231,8 @@ export const createBid = (id) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
+  alert("You already bid on this Post")
+
     if (message === 'Not authorized, token failed') {
       dispatch(logout())
     }

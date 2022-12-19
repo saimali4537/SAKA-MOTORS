@@ -43,6 +43,7 @@ import {
   bookReviewCreateReducer,
   bookTopRatedReducer,
   bookListMyReducer,
+  bookListMReducer,
   bookSListReducer,
 } from './reducers/bookReducers';
 import {
@@ -54,6 +55,7 @@ import {
   bidReviewCreateReducer,
   bidTopRatedReducer,
   bidListMyReducer,
+  bidListMReducer,
   bidSListReducer,
 } from './reducers/bidReducers';
 import {
@@ -172,6 +174,7 @@ const reducer = combineReducers({
   bookReviewCreate: bookReviewCreateReducer,
   bookTopRated: bookTopRatedReducer,
   bookListMy: bookListMyReducer,
+  bookListM: bookListMReducer,
   bookSList: bookSListReducer,
 
   bidList: bidListReducer,
@@ -182,6 +185,7 @@ const reducer = combineReducers({
   bidReviewCreate: bidReviewCreateReducer,
   bidTopRated: bidTopRatedReducer,
   bidListMy: bidListMyReducer,
+  bidListM: bidListMReducer,
   bidSList: bidSListReducer,
 
   overviewList: overviewListReducer,

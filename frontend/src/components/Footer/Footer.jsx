@@ -25,8 +25,8 @@ const quickLinks = [
   },
 
   {
-    path: "/contact",
-    display: "Contact",
+    path: "/auction",
+    display: "Auction",
   },
 ];
 

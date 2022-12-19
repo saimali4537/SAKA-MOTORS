@@ -14,7 +14,7 @@ import {
   emailSendf,
   emailSucc
 } from '../controllers/managerController.js'
-import { protecta, admin } from '../middleware/authMiddleware.js'
+import { protect, protecta, admin } from '../middleware/authMiddleware.js'
 
 router.route('/')
   .post(registerManager)
@@ -36,8 +36,8 @@ router
   .post('/profilep', updateManagerProfileP)
 
 router.route('/profile')
-  .get(protecta, getManagerProfile)
-  .put(protecta, updateManagerProfile)
+  .get(protect, getManagerProfile)
+  .put(protect, updateManagerProfile)
 
 router.route('/:id')
   .delete(protecta, deleteManager)

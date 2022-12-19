@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Container } from 'react-bootstrap'
 import Header from './components/Header/Header'
 import PHeader from './components/Header/PHeader'
@@ -90,239 +90,256 @@ import BidsLayout from './adminDashboard/adminLayouts/BidsLayout'
 import KommunicateChat from './chat'
 import ForgetScreen from './screens/loginScreen/ForgetScreen'
 import ForgetScreenS from './screens/loginScreen/ForgetScreenS'
+import ForgetScreenSM from './screens/loginScreen/ForgetScreenSM'
 import ForgetScreenM from './screens/loginScreen/ForgetScreenM'
-
-
-
-
-
-
-
+import ForgetScreenMM from './screens/loginScreen/ForgetScreenMM'
+import PostAddScreen from './screens/postScreen/PostAddScreen'
+import AuctionAddScreen from './screens/auctionScreen/AuctionAddScreen'
+import BidAddScreen from './screens/auctionScreen/BidAddScreen'
+import BidListScreenM from './screens/auctionScreen/BidListScreenM'
+import BookListScreenM from './screens/mechanicScreen/BookListScreenM'
+import BookEditScreen from './screens/mechanicScreen/BookEditScreen'
+import AuctionEditScreenA from './screens/auctionScreen/AuctionEditScreenA'
+import ProtAddScreen from './screens/mechanicScreen/ProtAddScreen'
+import ProductAddScreen from './screens/storeScreen/ProductAddScreen'
 
 
 const App = () => {
   return (
     <Router>
     <KommunicateChat/>
-
-      <Route path='/' component={Header} exact />
+<Route exact path="/">
+    <Redirect to="/home" />
+</Route>
+      <Route path='/home' component={Header} exact />
+      <Route path='/home/profile' component={Header} />
         <Route path='/about' component={Header} exact />
         <Route path='/mechanic' component={MHeader} exact />
         <Route path='/posts' component={PHeader} exact />
-        <Route path='/login' component={Header} exact />
-        <Route path='/login' component={Login} exact />
-        <Route path='/register' component={Header} />
-        <Route path='/register' component={RegisterScreen} />
-        <Route path='/logins' component={SHeader} exact />
-        <Route path='/logins' component={LoginS} exact />
-        <Route path='/loginsm' component={SHeader} exact />
-        <Route path='/loginsm' component={LoginSM} exact />
+        <Route path='/auction' component={AHeader} exact />
+        <Route path='/home/login' component={Header} exact />
+        <Route path='/home/login' component={Login} exact />
+        <Route path='/home/register' component={Header} />
+        <Route path='/home/register' component={RegisterScreen} />
+        <Route path='/store/logins' component={SHeader} exact />
+        <Route path='/store/logins' component={LoginS} exact />
+        <Route path='/store/loginsm' component={SHeader} exact />
+        <Route path='/store/loginsm' component={LoginSM} exact />
 
-        <Route path='/loginm' component={MHeader} exact />
-        <Route path='/loginm' component={LoginM} exact />
-        <Route path='/loginmm' component={MHeader} exact />
-        <Route path='/loginmm' component={LoginMM} exact />
+        <Route path='/mechanic/loginm' component={MHeader} exact />
+        <Route path='/mechanic/loginm' component={LoginM} exact />
+        <Route path='/mechanic/loginmm' component={MHeader} exact />
+        <Route path='/mechanic/loginmm' component={LoginMM} exact />
 
-        <Route path='/registers' component={SHeader} />
-        <Route path='/registers' component={RegisterScreenS} />
-        <Route path='/registersm' component={SHeader} />
-        <Route path='/registersm' component={RegisterScreenSM} />
+        <Route path='/store/registers' component={SHeader} />
+        <Route path='/store/registers' component={RegisterScreenS} />
+        <Route path='/store/registersm' component={SHeader} />
+        <Route path='/store/registersm' component={RegisterScreenSM} />
 
-        <Route path='/registerm' component={MHeader} />
-        <Route path='/registerm' component={RegisterScreenM} />
-        <Route path='/registermm' component={MHeader} />
-        <Route path='/registermm' component={RegisterScreenMM} />
+        <Route path='/mechanic/registerm' component={MHeader} />
+        <Route path='/mechanic/registerm' component={RegisterScreenM} />
+        <Route path='/mechanic/registermm' component={MHeader} />
+        <Route path='/mechanic/registermm' component={RegisterScreenMM} />
       <Route path='/store' component={SHeader} exact />
-      <Route path='/cart/:id?' component={SHeader} exact />
-      <Route path='/sstores/:id?' component={SHeader} exact />
-      <Route path='/order/:id' component={SHeader} />
-          <Route path='/shipping' component={SHeader} />
-          <Route path='/payment' component={SHeader} />
-          <Route path='/placeorder' component={SHeader} />
-          <Route path='/profile' component={SHeader} />
-          <Route path='/prot/:id' component={SHeader} />
-          <Route path='/product/:id' component={SHeader} />
-          <Route path='/post/:id' component={PHeader} />
-          <Route path='/storez/:id' component={SHeader} />
+      <Route path='/store/cart/:id?' component={SHeader} exact />
+      <Route path='/store/sstores/:id?' component={SHeader} exact />
+      <Route path='/store/order/:id' component={SHeader} />
+          <Route path='/store/shipping' component={SHeader} />
+          <Route path='/store/payment' component={SHeader} />
+          <Route path='/store/placeorder' component={SHeader} />
+          <Route path='/store/profile' component={SHeader} />
+          <Route path='/store/prot/:id' component={SHeader} />
+          <Route path='/store/product/:id' component={SHeader} />
+          <Route path='/store/storez/:id' component={SHeader} />
 
-          <Route path='/manager/productlist' component={SHeader} exact />
-          <Route path='/manager/productlist/:pageNumber' component={SHeader} exact />
-          <Route path='/manager/product/:id/edit' component={SHeader} />
+          <Route path='/store/manager/productlist' component={SHeader} exact />
+          <Route path='/store/manager/productlist/:pageNumber' component={SHeader} exact />
+          <Route path='/store/manager/product/:id/edit' component={SHeader} />
           
-          <Route path='/manager/orderlist' component={SHeader} />
-          <Route path='/searchs/:keyword' component={SHeader} exact />
-          <Route path='/pagep/:pageNumber' component={SHeader} exact />
-          <Route path='/search/:keyword/pagep/:pageNumber' component={SHeader} exact />
-          <Route path='/pagel/:pageNumber' component={SHeader} exact />
-          <Route path='/search/:keyword/pagel/:pageNumber' component={SHeader} exact />
-          <Route path='/storeby' component={SHeader} exact />
-          <Route path='/storecc' component={SHeader} />
-          <Route path='/protcc' component={MHeader} />
-          <Route path='/apost' component={PHeader} />
+          <Route path='/store/manager/orderlist' component={SHeader} />
+          <Route path='/store/searchs/:keyword' component={SHeader} exact />
+          <Route path='/store/pagep/:pageNumber' component={SHeader} exact />
+          <Route path='/store/search/:keyword/pagep/:pageNumber' component={SHeader} exact />
+          <Route path='/store/pagel/:pageNumber' component={SHeader} exact />
+          <Route path='/store/search/:keyword/pagel/:pageNumber' component={SHeader} exact />
+          <Route path='/store/storeby' component={SHeader} exact />
+          <Route path='/store/storecc' component={SHeader} />
+          <Route path='/mechanic/protcc' component={MHeader} />
 
-          <Route path='/storeca/store/:id/' component={SHeader} />
-          <Route path='/protca/prot/:id/' component={SHeader} />
+          <Route path='/store/storeca/storeadd' component={SHeader} />
+          <Route path='/store/protca/prot/:id/' component={SHeader} />
 
-          <Route path='/profilesm' component={SHeader} />
-          <Route path='/manager/store/:id/edit' component={SHeader} />
+          <Route path='/store/profilesm' component={SHeader} />
+          <Route path='/store/manager/store/:id/edit' component={SHeader} />
 
-          <Route path='/manager/mystore' component={SHeader} exact />
-          <Route path='/profilem' component={MHeader} />
-          <Route path='/book/:id' component={MHeader} />
-          <Route path='/bookc/:id' component={MHeader} />
+          <Route path='/store/manager/mystore' component={SHeader} exact />
+          <Route path='/mechanic/profilem' component={MHeader} />
+          <Route path='/mechanic/book/:id' component={MHeader} />
+          <Route path='/mechanic/bookc/:id' component={MHeader} />
           <Route path='/mechanic/bookings' component={MHeader} />
           <Route path='/posts/:id' component={PHeader} />
-          <Route path='/user/postlist' component={PHeader} />
           
-          <Route path='/manager/order/:id' component={SHeader} />
-        <Route path='/auction' component={AHeader} />
-        <Route path='/user/post/:id/edit' component={Header} />
-        <Route path='/user/auction/:id/edit' component={AHeader} />
-        <Route path='/aauction' component={AHeader} />
-        <Route path='/auctions/:id' component={AHeader} />
-        <Route path='/auctione/:id' component={AHeader} />
-        <Route path='/user/auctionlist' component={AHeader} />
-        <Route path='/bidc/:id' component={AHeader} />
-        <Route path='/bids/:id' component={AHeader} />
+          <Route path='/store/manager/order/:id' component={SHeader} />
+        <Route path='/home/user/post/:id/edit' component={Header} />
+        <Route path='/auction/user/auction/:id/edit' component={AHeader} />
+        <Route path='/auction/aauction' component={AHeader} />
+        <Route path='/auction/auctions/:id' component={AHeader} />
+        <Route path='/auction/auctione/:id' component={AHeader} />
+        <Route path='/auction/user/auctionlist' component={AHeader} />
+        <Route path='/auction/bidc/:id' component={AHeader} />
+        <Route path='/auction/bids/:id' component={AHeader} />
         <Route path='/admin/user/:id/edit' component={Nav} />
         <Route path='/admin/manager/:id/edit' component={Nav} />
         <Route path='/admin/:id/edit' component={Nav} />
         <Route path='/admin/post/:id/edit' component={Nav} />
         <Route path='/admin/store/:id/edit' component={Nav} />
         <Route path='/admin/order/:id' component={Nav} />
-        <Route path='/user/mybid' component={AHeader} />
-        <Route path='/orderd/:id' component={SHeader} />
+        <Route path='/admin/prot/:id/edit' component={Nav} exact />
+        <Route path='/admin/product/:id/edit' component={Nav} />
 
-        <Route path='/searchp/:keyword' component={PHeader} exact />
 
-        <Route path='/searchm/:keyword' component={MHeader} exact />
+        <Route path='/auction/user/mybid' component={AHeader} />
+        <Route path='/store/orderd/:id' component={SHeader} />
+
+        <Route path='/posts/searchp/:keyword' component={PHeader} exact />
+
+        <Route path='/mechanic/searchm/:keyword' component={MHeader} exact />
         <Route path='/searcha/:keyword' component={AHeader} />
-        <Route path='/protm' component={MHeader} />
-        <Route path='/mechanic/prot/:id/edit' component={MHeader} exact />
-        <Route path='/forget' component={Header} />
-        <Route path='/forgets' component={SHeader} />
-        <Route path='/forgetm' component={MHeader} />
+        <Route path='/mechanic/protm' component={MHeader} />
+        <Route path='/mechanic/prot/:id' component={MHeader} />
+        <Route path='/home/forget' component={Header} />
+        <Route path='/store/forgets' component={SHeader} />
+        <Route path='/mechanic/forgetm' component={MHeader} />
+        <Route path='/auction/user/auction/add' component={AHeader} />
+        <Route path='/auction/user/bidc/:id/add' component={AHeader} />
+        <Route path='/auction/user/mbid' component={AHeader} />
+        <Route path='/store/store/forgetsm' component={SHeader} />
+        <Route path='/posts/edit/:id' component={PHeader} />
+        <Route path='/mechanic/mbooks' component={MHeader} />
+        <Route path='/admin/auction/:id/edit' component={Nav } exact />
+        <Route path='/mechanic/forgetmm' component={MHeader} exact/>
 
-        
-
-
-
-
-
-
-
-
-
-
-
+        <Route path='/mechanic/protadd' component={MHeader } exact />
+        <Route path='/store/productadd' component={SHeader} />
 
 
           
         <main className="main">
         <Container>
-        <Route path='/posts' component={PostsScreen} exact />
-        <Route path='/post/:id' component={PostScreen} />
-        <Route path='/user/postlist' component={PostListScreen} />
-        <Route path='/user/post/:id/edit' component={PostEditScreen} />
-        <Route path='/searchp/:keyword' component={PostsScreen} exact />
-        <Route path='/user/mybid' component={BidListScreen} />
-        <Route path='/forget' component={ForgetScreen} />
-        <Route path='/forgets' component={ForgetScreenS} />
-        <Route path='/forgetm' component={ForgetScreenM} />
+        <Route path='/posts' component={PostsScreen} exact/>
+        <Route path='/posts/post/:id' component={PostScreen} exact/>
+        <Route path='/posts/apost' component={PostCreation} exact/>
+        <Route path='/posts/user/postlist' component={PostListScreen}exact />
+        <Route path='/posts/user/post/:id/edit' component={PostEditScreen} exact/>
+        <Route path='/posts/searchp/:keyword' component={PostsScreen} exact />
+        <Route path='/auction/user/mybid' component={BidListScreen} />
+        <Route path='/home/forget' component={ForgetScreen} />
+        <Route path='/store/forgets' component={ForgetScreenS} />
+        <Route path='/store/forgetsm' component={ForgetScreenSM} exact/>
+        <Route path='/mechanic/forgetmm' component={ForgetScreenMM} exact/>
+        <Route path='/mechanic/forgetm' component={ForgetScreenM} />
+        <Route path='/posts/user/post/add' component={PostAddScreen} exact/>
+        <Route path='/auction/user/auction/add' component={AuctionAddScreen} />
+        <Route path='/auction/user/bidc/:id/add' component={BidAddScreen} />
+        <Route path='/auction/user/mbid' component={BidListScreenM} />
+        <Route path='/store/profile' component={ProfileScreen} />
+        <Route path='/posts/profile' component={ProfileScreen} />
+        <Route path='/auction' component={AuctionScreen} exact/>
+        <Route path='/auction/searcha/:keyword' component={AuctionScreen} />
+        <Route path='/auction/aauction' component={AuctionCreation} />
+        <Route path='/auction/auctions/:id' component={AuctionEditScreen} />
+        <Route path='/auction/auctione/:id' component={AuctionsScreen} exact/>
+        <Route path='/auction/user/auctionlist' component={AuctionListScreen} />
+        <Route path='/mechanic/mbooks' component={BookListScreen} />
+        <Route path='/mechanic/book/add/:id' component={BookAddScreen } exact />
+        <Route path='/admin/auction/:id/edit' component={AuctionEditScreenA } exact />
+        <Route path='/mechanic/protadd' component={ProtAddScreen } exact />
 
-
-
-
-        <Route path='/auction' component={AuctionScreen} />
-        <Route path='/searcha/:keyword' component={AuctionScreen} />
-        <Route path='/aauction' component={AuctionCreation} />
-        <Route path='/auctions/:id' component={AuctionEditScreen} />
-        <Route path='/auctione/:id' component={AuctionsScreen} />
-        <Route path='/user/auctionlist' component={AuctionListScreen} />
-
-        <Route path='/bidc/:id' component={BidCreation} />
-        <Route path='/bids/:id' component={BidEditScreen} />
+        <Route path='/auction/bidc/:id' component={BidCreation} />
+        <Route path='/auction/bids/:id' component={BidEditScreen} />
         
           <Route path='/admin/post/:id/edit' component={PostEditScreenA} />
+          <Route path='/store/productadd' component={ProductAddScreen} />
+
 
           
           <Route path='/admin/:id/edit' component={MechanicEditScreenA} />
-        <Route path='/user/auction/:id/edit' component={AuctionEditScreen} />
+        <Route path='/auction/user/auction/:id/edit' component={AuctionEditScreen} />
 
         
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/orderd/:id' component={OrderScreenD} />
+          <Route path='/store/order/:id' component={OrderScreen} />
+          <Route path='/store/orderd/:id' component={OrderScreenD} />
           <Route path='/admin/order/:id' component={OrderScreenA} />
-          <Route path='/manager/order/:id' component={OrderScreenM} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/mechanic/bookings' component={BookListScreen} />
+          <Route path='/store/manager/order/:id' component={OrderScreenM} />
+          <Route path='/store/shipping' component={ShippingScreen} />
+          <Route path='/mechanic/bookings' component={BookListScreenM} />
 
 
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
+          <Route path='/store/payment' component={PaymentScreen} />
+          <Route path='/store/placeorder' component={PlaceOrderScreen} />
 
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/prot/:id' component={Prot} />
-          <Route path='/book/:id' component={BookAddScreen} />
+          <Route path='/home/profile' component={ProfileScreen} />
+          <Route path='/store/product/:id' component={ProductScreen} />
+          <Route path='/mechanic/prot/:id' component={Prot} exact/>
+          <Route path='/mechanic/book/:id/edit' component={BookEditScreen}  exact/>
+          
 
-          <Route path='/storez/:id' component={StorezScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-      <Route path='/sstores/:id?' component={SProduct} exact />
+          <Route path='/store/storez/:id' component={StorezScreen} />
+          <Route path='/store/cart/:id?' component={CartScreen} />
+      <Route path='/store/sstores/:id?' component={SProduct} exact />
 
 
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route path='/admin/manager/:id/edit' component={ManagerEditScreen} />
-          <Route path='/manager/productlist' component={ProductListScreen} exact />
-          <Route path='/manager/productlist/:pageNumber' component={ProductListScreen} exact />
+          <Route path='/store/manager/productlist' component={ProductListScreen} exact />
+          <Route path='/store/manager/productlist/:pageNumber' component={ProductListScreen} exact />
           
-          <Route path='/manager/product/:id/edit' component={ProductEditScreen} />
+          <Route path='/store/manager/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/product/:id/edit' component={ProductEditScreenA} />
 
           <Route path='/admin/store/:id/edit' component={Storec} />
-          <Route path='/storecc' component={Storecc} />
-          <Route path='/protcc' component={Profilecc} />
+          <Route path='/store/storecc' component={Storecc} />
+          <Route path='/mechanic/protcc' component={Profilecc} />
 
-          <Route path='/storeca/store/:id/' component={Storeca} />
-          <Route path='/protca/prot/:id/' component={Profileca} />
-          <Route path='/bookc/:id' component={BookCreation} />
-          <Route path='/posts/:id' component={PostEditScreen} />
-          <Route path='/apost' component={PostCreation} />
+          <Route path='/store/storeca/storeadd' component={Storeca} />
+          <Route path='/mechanic/protca/prot/:id/' component={Profileca} />
+          <Route path='/mechanic/bookc/:id' component={BookCreation} />
+          <Route path='/posts/edit/:id' component={PostEditScreen} exact/>
 
           <Route path='/admin/prot/:id/edit' component={ProtEditScreenA} exact />
           <Route path='/mechanic/prot/:id/edit' component={ProtEditScreen} exact />
 
 
-          <Route path='/manager/orderlist' component={OrderListScreen} />
-          <Route path='/searchs/:keyword' component={StoreScreen} exact />
-          <Route path='/pagep/:pageNumber' component={StoreScreen} exact />
+          <Route path='/store/manager/orderlist' component={OrderListScreen} />
+          <Route path='/store/searchs/:keyword' component={StoreScreen} exact />
+          <Route path='/store/pagep/:pageNumber' component={StoreScreen} exact />
         <Route path='/mechanic' component={MechanicScreen} exact />
         <Route path='/mechanic/pagep/:pageNumber' component={MechanicScreen} exact />
-        <Route path='/searchm/:keyword' component={MechanicScreen} exact />
+        <Route path='/mechanic/searchm/:keyword' component={MechanicScreen} exact />
 
 
           
-          <Route path='/search/:keyword/pagep/:pageNumber' component={StoreScreen} exact />
+          <Route path='/store/search/:keyword/pagep/:pageNumber' component={StoreScreen} exact />
           <Route path='/store' component={StoreScreen} exact />
           <Route path='/store/search/:keyword' component={Storeby} exact />
           <Route path='/pagel/:pageNumber' component={Storeby} exact />
           
           <Route path='/search/:keyword/pagel/:pageNumber' component={Storeby} exact />
-          <Route path='/storeby' component={Storeby} exact />
-          <Route path='/manager/store/:id/edit' component={Storecm} />
+          <Route path='/store/storeby' component={Storeby} exact />
+          <Route path='/store/manager/store/:id/edit' component={Storecm} />
 
-          <Route path='/manager/mystore' component={MyStore} exact/>
+          <Route path='/store/manager/mystore' component={MyStore} exact/>
 
 
-          <Route path='/profilesm' component={ProfileSM} />
-          <Route path='/profilem' component={ProfileScreenM} />
-          <Route path='/protm' component={ProtListScreen} />
+          <Route path='/store/profilesm' component={ProfileSM} />
+          <Route path='/mechanic/profilem' component={ProfileScreenM} />
+          <Route path='/mechanic/protm' component={ProtListScreen} />
 
 
 
 
         </Container>
-        <Route path='/' component={Home} exact />
+        <Route path='/home' component={Home} exact />
         <Route path='/about' component={About} exact />
         <Route path='/admin' component={Nav} exact />
         <Route path='/admin' component={Adminlog} exact />

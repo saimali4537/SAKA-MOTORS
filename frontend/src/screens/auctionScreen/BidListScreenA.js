@@ -29,7 +29,7 @@ const BidListScreenA = ({ history, match }) => {
 
    
     if (!adminInfo ) {
-      history.push('/login')
+      history.push('/admin')
     } else {
      dispatch(listBids(''))
 

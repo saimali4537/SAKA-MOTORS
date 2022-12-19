@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
-import {  updateBook} from '../../actions/bookActions'
-import { BOOK_UPDATE_RESET } from '../../constants/bookConstants'
+import {  createBook} from '../../actions/bookActions'
+import { BOOK_CREATE_RESET } from '../../constants/bookConstants'
 
 const BookEditScreen = ({ match, history }) => {
   const bookId = match.params.id
@@ -17,60 +17,30 @@ const BookEditScreen = ({ match, history }) => {
   const [contact, setContact] = useState('')
   const [address, setAddress] = useState('')
   const [requiretime, setRequiretime] = useState('')
-  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
 
   const bookDetails = useSelector((state) => state.bookDetails)
   const { loading, error, book } = bookDetails
 
-  const bookUpdate = useSelector((state) => state.bookUpdate)
+  const bookCreate = useSelector((state) => state.bookCreate)
   const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = bookUpdate
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+  } = bookCreate
 
   useEffect(() => {
-    if (successUpdate) {
-      dispatch({ type: BOOK_UPDATE_RESET })
+    if (successCreate) {
+      dispatch({ type: BOOK_CREATE_RESET })
       history.push('/mechanic')
-    } else {
-        setName(book.name)
-        setDescription(book.description)
-        setContact(book.contact)
-        setAddress(book.address)
-        setRequiretime(book.requiretime)
-      }
+    } 
     }
-  , [dispatch, history, bookId, book, successUpdate])
-
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setUploading(false)
-    } catch (error) {
-      console.error(error)
-      setUploading(false)
-    }
-  }
-
+  , [dispatch, history, successCreate])
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
-      updateBook({
+      createBook(`${match.params.id}`,{
         _id: bookId,
         name,
         description,
@@ -80,6 +50,11 @@ const BookEditScreen = ({ match, history }) => {
       })
     )
   }
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
 
   return (
     <><br/><br/>
@@ -88,8 +63,8 @@ const BookEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Book Mechanic Service Now</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {loadingCreate && <Loader />}
+        {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -100,6 +75,7 @@ const BookEditScreen = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -110,6 +86,7 @@ const BookEditScreen = ({ match, history }) => {
                   <Form.Label>Description</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={50}
                     placeholder='Enter description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -119,7 +96,9 @@ const BookEditScreen = ({ match, history }) => {
                 <Form.Group controlId='contact'>
                   <Form.Label>Contact</Form.Label>
                   <Form.Control
-                    type='text'
+                    type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter your contact number'
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
@@ -130,6 +109,7 @@ const BookEditScreen = ({ match, history }) => {
                   <Form.Label>Address</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={50}
                     placeholder='Enter your Address'
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -140,6 +120,7 @@ const BookEditScreen = ({ match, history }) => {
                   <Form.Label>Need Time</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={20}
                     placeholder='Enter time for Analyze'
                     value={requiretime}
                     onChange={(e) => setRequiretime(e.target.value)}

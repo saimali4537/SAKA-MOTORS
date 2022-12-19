@@ -36,9 +36,7 @@ const PostListScreen = ({ history, match }) => {
     dispatch({ type: POST_CREATE_RESET })
 
     if (!userInfo ) {
-      history.push('/login')
-    } if (successCreate) {
-      history.push(`/posts/${createdPost._id}/edit`)
+      history.push('/home/login')
     } else {
       dispatch(listMyPosts(''))
     }
@@ -58,7 +56,7 @@ const PostListScreen = ({ history, match }) => {
   }
 
   const createPostHandler = () => {
-    dispatch(createPost())
+    history.push('/posts/apost')
   }
 
   return (
@@ -105,7 +103,7 @@ const PostListScreen = ({ history, match }) => {
                       <td>{post.cnt}</td>
                       <td>{post.location}</td>
                       <td>
-                        <LinkContainer to={`/user/post/${post._id}/edit`}>
+                        <LinkContainer to={`/posts/user/post/${post._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

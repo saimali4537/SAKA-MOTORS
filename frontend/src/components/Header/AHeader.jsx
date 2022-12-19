@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 
 const navLinks = [
   {
-    path: "/",
+    path: "/home",
     display: "Home",
   },
   {
@@ -85,29 +85,30 @@ const AHeader = () => {
                   title={userInfo.name}
                   id='username'
                 >
-                  <LinkContainer to='/profile' >
+                  <LinkContainer to='/home/profile' >
                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/auction/user/mbid' >
+                    <NavDropdown.Item>My Bids</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                     
-              <Link to="/login" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/home/login" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-login-circle-line"></i> Login
                 </Link>
             
                 )}
               {userInfo  && (
                 <NavDropdown title='Auction Panel' id='usermenu'>
-                  <LinkContainer to='/user/auctionlist'>
-                    <NavDropdown.Item>Manage Auction Post</NavDropdown.Item>
-                  </LinkContainer>
-                <LinkContainer to='/user/mybid'>
+                    <NavDropdown.Item href='/auction/user/auctionlist'>Manage Auction Post</NavDropdown.Item>
+                <LinkContainer to='/auction/user/mybid'>
                   <NavDropdown.Item>Bid Report</NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown>
               )}
-              <Link to="/register" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
+              <Link to="/home/register" className=" d-flex align-items-center gap-1" style={{pointerEvents: disable}}>
                   <i class="ri-user-line"></i> Register
                 </Link>
               </div>
@@ -123,7 +124,7 @@ const AHeader = () => {
             <Col lg="7" md="3" sm="8">
               <div className="logo">
                 <h1>
-                  <Link to="/" className=" d-flex align-items-center gap-6">
+                  <Link to="/home" className=" d-flex align-items-center gap-6">
                    
                     <img
               src={logo}
@@ -156,7 +157,7 @@ const AHeader = () => {
               className=" d-flex align-items-center justify-content-end "
             >
               <button className="header__btn btn ">
-                <Link to="/aauction">
+                <Link to="/auction/aauction">
                 <i class="ri-file-add-fill"></i>Post An Auction
                 </Link>
               </button>

@@ -12,7 +12,8 @@ import {
 } from '../controllers/postController.js'
 import { protectu } from '../middleware/authMiddleware.js'
 
-router.route('/').get(getPosts).post(protectu, createPost)
+router.route('/').get(getPosts)
+router.route('/add').put(protectu, createPost)
 router.route('/myposts').get(protectu, getMyPosts)
 router.route('/:id/reviews').post(protectu, createPostReview)
 router.get('/top', getTopPosts)

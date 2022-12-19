@@ -72,7 +72,7 @@ export const logout1 = () => dispatch => {
   dispatch({ type: MANAGER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: MANAGER_LIST_RESET })
-  document.location.href = '/loginsm'
+  document.location.href = '/store/loginsm'
 }
 
 export const register = (name, email, password, isAdmin) => async (dispatch) => {
@@ -220,11 +220,11 @@ export const getManagerDetails = (id) => async (dispatch, getState) => {
       type: MANAGER_DETAILS_REQUEST,
     })
 
-    const { adminLogin: { adminInfo } } = getState()
+    const { managerLogin: { managerInfo } } = getState()
 
     const config = {
       headers: {
-        Authorization: `Bearer ${adminInfo.token}`
+        Authorization: `Bearer ${managerInfo.token}`
       },
     }
 

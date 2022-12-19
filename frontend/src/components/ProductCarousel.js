@@ -23,22 +23,20 @@ const ProductCarousel = () => {
         <Carousel pause='hover' className='bg-dark' interval={3000}>
           {products.map(product => (
             
-            <Carousel.Item key={product._id}>
-              <br></br><br></br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Link to={`/product/${product._id}`}>
-              <Image src={product.image} alt={product.name} fluid />
-                <Carousel.Caption className='carousel-caption'>
+            <Carousel.Item key={product._id} >
+              <Link to={`/store/product/${product._id}`}>
+              <Image src={product.image} alt={product.name} fluid style={{
+              display: 'flex',
+              justifyContent: 'center',             
+            }}/>
+                <Carousel.Caption className='carousel-caption' style={{
+              position: 'absolute',
+              top:'-20px'
+            }}>
                   <h2>
                     {product.name} (Rs.{product.price})
                   </h2>
-                </Carousel.Caption><br></br>
+                </Carousel.Caption>
               </Link>
             </Carousel.Item>
           ))}

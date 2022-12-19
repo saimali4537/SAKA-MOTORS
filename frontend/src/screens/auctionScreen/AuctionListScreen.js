@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listMyAuctions, deleteAuction, createAuction } from '../../actions/auctionActions'
+import { listMyAuctions, deleteAuction } from '../../actions/auctionActions'
 import { AUCTION_CREATE_RESET } from '../../constants/auctionConstants'
 
 const AuctionListScreen = ({ history, match }) => {
@@ -37,9 +37,8 @@ const AuctionListScreen = ({ history, match }) => {
 
    
     if (!userInfo ) {
-      history.push('/login')
+      history.push('/home/login')
     } if (successCreate) {
-      history.push(`/auctions/${createdAuction._id}`)
     } else {
      dispatch(listMyAuctions(''))
 
@@ -60,7 +59,8 @@ const AuctionListScreen = ({ history, match }) => {
   }
 
   const createAuctionHandler = () => {
-    dispatch(createAuction())
+    history.push('/auction/aauction')
+
   }
   const [disable, setDisable] = React.useState(false);
 
@@ -118,7 +118,7 @@ const AuctionListScreen = ({ history, match }) => {
                      
                       <td>
                       
-                        <LinkContainer to={`/user/auction/${auction._id}/edit`}>
+                        <LinkContainer to={`/auction/user/auction/${auction._id}/edit`}>
                           <Button variant='light' className='btn-sm'>
                             <i className='fas fa-edit'></i>
                           </Button>

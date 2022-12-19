@@ -23,7 +23,7 @@ const AuctionsScreen = ({ match }) => {
   return (
     <>
       <Meta />
-          <Link to='/' className='btn btn-light'>
+          <Link to='/home' className='btn btn-light'>
             Go Back
           </Link>
           <h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

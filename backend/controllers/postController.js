@@ -57,20 +57,33 @@ const deletePost = asyncHandler(async (req, res) => {
 // @route   POST /api/posts
 // @access  Private/Admin
 const createPost = asyncHandler(async (req, res) => {
+  const {
+    name,
+    price,
+    description,
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+    model,
+    cnt,
+    location,
+  } = req.body
   const post = new Post({
-    name: 'Sample name',
-    price: 0,
+    name: name,
+    price: price,
     user: req.user._id,
-    image: '/images/sample.jpg',
-    image1: '/images/sample1.jpg',
-    image2: '/images/sample2.jpg',
-    image3: '/images/sample3.jpg',
-    image4: '/images/sample4.jpg',
-    model: 'Sample Model',
-    cnt: 'Sample cnt',
-    location: 'Sample Location',
+    image: image,
+    image1: image1,
+    image2: image2,
+    image3: image3,
+    image4: image4,
+    model:  model,
+    cnt: cnt,
+    location: location,
     numReviews: 0,
-    description: 'Sample description',
+    description: description,
   })
 
   const createdPost = await post.save()

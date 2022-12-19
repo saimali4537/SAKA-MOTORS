@@ -63,21 +63,54 @@ const deleteAuction = asyncHandler(async (req, res) => {
 // @route   AUCTION /api/auctions
 // @access  Private/Admin
 const createAuction = asyncHandler(async (req, res) => {
+  const {
+    name,
+    price,
+    description,
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+    model,
+    cnt,
+    location,
+  } = req.body
   const auction = new Auction({
-    name: 'Sample name',
-    price: 0,
+    name: name,
+    price: price,
     user: req.user._id,
-    image: '/images/sample.jpg',
-    image1: '/images/sample1.jpg',
-    image2: '/images/sample2.jpg',
-    image3: '/images/sample3.jpg',
-    image4: '/images/sample4.jpg',
-    model: 'Sample Model',
-    cnt: 'Sample cnt',
-    location: 'Sample Location',
+    image: image,
+    image1: image1,
+    image2: image2,
+    image3: image3,
+    image4: image4,
+    model:  model,
+    cnt: cnt,
+    location: location,
     numReviews: 0,
-    description: 'Sample description',
+    description: description,
+    
   })
+  try {
+    auction.timer = parseInt(259200);
+    let duration = parseInt(259200);
+    let timer = parseInt(auction.timer);
+    let intervalTimer = setInterval(async () => {
+      timer -= 1;
+      await auction.updateOne({ timer: timer });
+      io
+        .to(auction._id.toString())
+        .emit('timer', {
+          action: 'timerUpdate',
+          data: { timer: timer, _id: auction._id },
+        });
+    }, 1000);
+    (duration + 1) * 1000;
+}catch (err) {
+  console.log(err);
+  res.status(500).json({ errors: [{ msg: 'Server error' }] });
+}
   const auctions = await Auction.find({ user: req.user._id })
   if (auctions.length===0) {
     const createdAuction = await auction.save()
@@ -123,26 +156,6 @@ const updateAuction = asyncHandler(async (req, res) => {
     auction.model = model
     auction.cnt = cnt
     auction.location = location
-    try {
-      auction.timer = parseInt(259200);
-      let duration = parseInt(259200);
-      let timer = parseInt(auction.timer);
-      let intervalTimer = setInterval(async () => {
-        timer -= 1;
-        await auction.updateOne({ timer: timer });
-        io
-          .to(auction._id.toString())
-          .emit('timer', {
-            action: 'timerUpdate',
-            data: { timer: timer, _id: auction._id },
-          });
-      }, 1000);
-      (duration + 1) * 1000;
-  }catch (err) {
-    console.log(err);
-    res.status(500).json({ errors: [{ msg: 'Server error' }] });
-  }
-
     const updatedAuction = await auction.save()
     res.json(updatedAuction)
   } else {

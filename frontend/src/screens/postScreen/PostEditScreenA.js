@@ -115,10 +115,15 @@ const PostEditScreenA = ({ match, history }) => {
       })
     )
   }
+  const maxLengthCheck = (object) => {
+    if (object.target.value.length > object.target.maxLength) {
+     object.target.value = object.target.value.slice(0, object.target.maxLength)
+      }
+    }
 
   return (
     <><br/><br/>
-      <Link to='/admin/postlist' className='btn btn-light my-3'>
+      <Link to='/admin/postslist' className='btn btn-light my-3'>
         Go Back
       </Link>
       <FormContainer>
@@ -135,6 +140,7 @@ const PostEditScreenA = ({ match, history }) => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type='name'
+                    maxLength={15}
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -145,6 +151,8 @@ const PostEditScreenA = ({ match, history }) => {
                   <Form.Label>Price</Form.Label>
                   <Form.Control
                     type='number'
+                    maxLength = "11" 
+                    onInput={maxLengthCheck}
                     placeholder='Enter price'
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
@@ -173,6 +181,7 @@ const PostEditScreenA = ({ match, history }) => {
                   <Form.Label>Model</Form.Label>
                   <Form.Control
                     type='text'
+                    maxLength={15}
                     placeholder='Enter model'
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
@@ -180,13 +189,19 @@ const PostEditScreenA = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='location'>
-                  <Form.Label>Location</Form.Label>
+                <Form.Label>Location</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter Location'
-                    value={location}
-                    onChange={(e) => setlocation(e.target.value)}
-                  ></Form.Control>
+          as="select"
+          value={location}
+          onChange={e => {
+            setlocation(e.target.value);
+          }}
+        >
+           <option value="" disabled>Please Choose Location</option>
+        <option value="Wah Cantt">Wah Cantt</option>
+        <option value="Taxila">Taxila</option>
+        <option value="Rawalpindi">Rawalpindi</option>
+        </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='category'>
@@ -202,6 +217,7 @@ const PostEditScreenA = ({ match, history }) => {
                 <Form.Group controlId='description'>
                   <Form.Label>Description</Form.Label>
                   <Form.Control
+                  maxLength={50}
                     type='text'
                     placeholder='Enter description'
                     value={description}

@@ -58,12 +58,17 @@ const deleteBid = asyncHandler(async (req, res) => {
 // @route   POST /api/bids
 // @access  Private/Admin
 const createBid = asyncHandler(async (req, res) => {
+  const {
+    name,
+    cnt,
+    bide
+  } = req.body
   const bid = new Bid({
     user: req.user._id,
     auction: req.params.id,
-    name: 'Sample name',
-    cnt: 'Sample contact',
-    bide: 0,
+    name: name,
+    cnt: cnt,
+    bide: bide,
   
     
   })
@@ -116,11 +121,17 @@ const getTopBids = asyncHandler(async (req, res) => {
 
 const getMyBids = asyncHandler(async (req, res) => {
     const auctions = await Auction.find({ user: req.user._id })
+    if(auctions.length===0){
+      res.json(auctions)
+    }else{
     const bids= await Bid.find({auction: auctions[0]._id}).sort({ bide: -1 })
     res.json(bids)
-
+    }
 })
-
+const getMBids = asyncHandler(async (req, res) => {
+  const bids = await Bid.find({ user: req.user._id })
+  res.json(bids)
+})
 
 
 export {
@@ -131,4 +142,5 @@ export {
   updateBid,
   getTopBids,
   getMyBids,
+  getMBids
 }
