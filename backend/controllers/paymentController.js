@@ -1,7 +1,6 @@
 import Stripe from "stripe";
 import dotenv from 'dotenv'
 import asyncHandler from 'express-async-handler';
-import Order from '../models/orderModel.js'
 dotenv.config()
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY_MY);
 
