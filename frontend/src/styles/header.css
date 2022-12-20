@@ -12,9 +12,7 @@
 
 
 .header__top__left {
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
+  
 }
 
 .header__top__left span {
