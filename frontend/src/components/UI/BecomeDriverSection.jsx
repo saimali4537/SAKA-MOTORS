@@ -9,8 +9,8 @@ import driverImg from "../../assets/all-images/toyota-offer-2.png";
 
 const BecomeDriverSection = () => {
   return (
-    <section className="become__driver">
-      <Container>
+    <section className="become__driver" style={{background: 'linear-gradient(#a00202, hwb(235 0% 95% / 0.9))'}}>
+      <Container >
         <Row>
           <Col lg="6" md="6" sm="12" className="become__driver-img">
             <img src={driverImg} alt="" className="w-100" />
