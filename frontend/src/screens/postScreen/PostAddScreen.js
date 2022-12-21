@@ -9,7 +9,7 @@ import FormContainer from '../../components/FormContainer'
 import {createPost } from '../../actions/postActions'
 import { POST_UPDATE_RESET } from '../../constants/postConstants'
 
-const PostEditScreen = ({ match, history }) => {
+const PostAddScreen = ({ match, history }) => {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [image, setImage] = useState([])
@@ -229,4 +229,4 @@ const PostEditScreen = ({ match, history }) => {
   )
 }
 
-export default PostEditScreen
+export default PostAddScreen
