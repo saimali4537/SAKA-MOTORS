@@ -76,7 +76,9 @@ const SHeader = ({location,history}) => {
         <Container>
           <Row>
             <Col lg="6" md="6" sm="6">
-              <div className="header__top__left">
+              <div className="header__top__left" style={{ display: 'flex',
+  alignitems: 'center',
+  columngap: '1rem'}}>
                 <span>Need Help?</span>
                 <span className="header__top__help">
                   <i class="ri-phone-fill"></i> +92-312-5803751
@@ -145,7 +147,7 @@ const SHeader = ({location,history}) => {
       <div className="header__middle">
         <Container>
           <Row>
-            <Col lg="5" md="3" sm="8">
+            <Col lg="7" md="3" sm="8">
               <div className="logo">
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-6">

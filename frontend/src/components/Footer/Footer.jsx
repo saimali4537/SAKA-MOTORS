@@ -105,8 +105,7 @@ Here you have a greater chances of getting a quality product including cars and 
           <Col lg="12">
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
-                SAKA MOTORS DEVELOPERS. All rights reserved.
+                <i class="ri-copyright-line"></i>This Website is for Educational Purpose And Data is taken from Pakwheels.
               </p>
             </div>
           </Col>

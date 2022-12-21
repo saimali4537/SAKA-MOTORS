@@ -8,6 +8,7 @@ import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/mechanicActions'
 import { send } from '../../actions/mechanicActions'
 import { auth } from '../../actions/mechanicActions'
+import ReactPasswordChecklist from 'react-password-checklist'
 
 const RegisterScreenMM = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -85,15 +86,19 @@ const RegisterScreenMM = ({ location, history }) => {
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-           rules={["minLength","specialChar",
-                   "number","capital","match"]}
-           minLength={8}
             type='password'
             placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            //value={password}
+          onChange={(e) => setPassword(e.target.value)}
+
             disabled={disablel}
-          ></Form.Control>
+          />
+          <ReactPasswordChecklist
+          rules={["length","specialChar","number","capital"]}
+          minLength={8}
+          value={password}
+
+          />
         </Form.Group>
 
         <Form.Group controlId='confirmPassword'>

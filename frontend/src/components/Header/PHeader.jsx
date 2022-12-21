@@ -69,7 +69,9 @@ const Header = () => {
         <Container>
           <Row>
             <Col lg="6" md="6" sm="6">
-              <div className="header__top__left">
+              <div className="header__top__left" style={{ display: 'flex',
+  alignitems: 'center',
+  columngap: '1rem'}}>
                 <span>Need Help?</span>
                 <span className="header__top__help">
                   <i class="ri-phone-fill"></i> +92-312-5803751

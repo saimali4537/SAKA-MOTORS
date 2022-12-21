@@ -8,7 +8,7 @@ import ava02 from "../../assets/all-images/ava2.png";
 const OUR__MEMBERS = [
   {
     name: "",
-    experience: "5 years of experience",
+    experience: "1 years of experience",
     fbUrl: "#",
     instUrl: "#",
     twitUrl: "#",
@@ -18,7 +18,7 @@ const OUR__MEMBERS = [
  
   {
     name: "",
-    experience: "5 years of experience",
+    experience: "1 years of experience",
     fbUrl: "#",
     instUrl: "#",
     twitUrl: "#",
