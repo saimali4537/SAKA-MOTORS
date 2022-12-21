@@ -33,7 +33,7 @@ const HeroSlider = () => {
                     Buy Your Car
                   </button>
              </Link>
-            <Link to={'/apost'}>
+            <Link to={'/posts/apost'}>
                 <button className='btn btn-dark rounded-pill px-4 py-2'>
                   Sell Your Car{' '}
                 </button>
@@ -57,7 +57,7 @@ const HeroSlider = () => {
                     Buy Your Car
                   </button>
              </Link>
-             <Link to={'/apost'}>
+             <Link to={'/posts/apost'}>
                 <button className='btn btn-dark rounded-pill px-4 py-2'>
                   Sell Your Car{' '}
                 </button>
@@ -81,7 +81,7 @@ const HeroSlider = () => {
                     Buy Your Car
                   </button>
              </Link>
-             <Link to={'/apost'}>
+             <Link to={'/posts/apost'}>
                 <button className='btn btn-dark rounded-pill px-4 py-2'>
                   Sell Your Car{' '}
                 </button>

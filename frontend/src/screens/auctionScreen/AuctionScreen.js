@@ -26,10 +26,10 @@ const AuctionsScreen = ({ match }) => {
           <Link to='/home' className='btn btn-light'>
             Go Back
           </Link>
-          <h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to Auction Module</h1>
+          <h1 style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>Welcome to Auction Module</h1>
       { loading ? (
         <Loader />
       ) : error ? (

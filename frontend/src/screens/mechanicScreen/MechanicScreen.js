@@ -23,11 +23,10 @@ const ProtScreen = ({ match }) => {
   return (
     <>
     <Meta />
-      <h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our Mechanics</h1>
+    <h1 style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>Our Mechanics</h1>
       { loading ? (
         <Loader />
       ) : error ? (

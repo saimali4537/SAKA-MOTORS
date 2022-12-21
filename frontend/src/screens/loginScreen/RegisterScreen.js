@@ -8,6 +8,7 @@ import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/userActions'
 import { send } from '../../actions/userActions'
 import { auth } from '../../actions/userActions'
+import ReactPasswordChecklist from 'react-password-checklist'
 
 
 const RegisterScreen = ({ location, history }) => {
@@ -80,21 +81,26 @@ const RegisterScreen = ({ location, history }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={disablel}
-          ></Form.Control>
+          ></Form.Control><Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
         </Form.Group>
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-           rules={["length","specialChar","number","capital","match"]}
-           minLength={8}
-           
             type='password'
             placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            //value={password}
+          onChange={(e) => setPassword(e.target.value)}
+
             disabled={disablel}
-          >
-          </Form.Control>
+          />
+          <ReactPasswordChecklist
+          rules={["length","specialChar","number","capital"]}
+          minLength={8}
+          value={password}
+
+          />
         </Form.Group>
 
         <Form.Group controlId='confirmPassword'>

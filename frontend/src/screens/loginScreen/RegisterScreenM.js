@@ -78,7 +78,9 @@ const RegisterScreenM = ({ location, history }) => {
     value={email}
     onChange={(e) => setEmail(e.target.value)}
     disabled={disablel}
-  ></Form.Control>
+  ></Form.Control><Form.Text className="text-muted">
+  We'll never share your email with anyone else.
+</Form.Text>
 </Form.Group>
 
 <Form.Group controlId='password'>
