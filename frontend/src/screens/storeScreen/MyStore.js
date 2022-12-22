@@ -59,7 +59,7 @@ const MyStore = ({ history, match }) => {
   }
 
   const createStoreHandler = () => {
-    dispatch(createStore1())
+    history.push('/store/storeca/storeadd')
   }
 
   return (
