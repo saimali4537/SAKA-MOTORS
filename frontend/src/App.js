@@ -125,6 +125,7 @@ const App = () => {
         <Route path='/store/logins' component={LoginS} exact />
         <Route path='/store/loginsm' component={SHeader} exact />
         <Route path='/store/loginsm' component={LoginSM} exact />
+        <Route path='/auction/searcha/:keyword' component={AHeader} />
 
         <Route path='/mechanic/loginm' component={MHeader} exact />
         <Route path='/mechanic/loginm' component={LoginM} exact />
@@ -200,8 +201,6 @@ const App = () => {
 
         <Route path='/auction/user/mybid' component={AHeader} />
         <Route path='/store/orderd/:id' component={SHeader} />
-
-        <Route path='/posts/searchp/:keyword' component={PHeader} exact />
 
         <Route path='/mechanic/searchm/:keyword' component={MHeader} exact />
         <Route path='/searcha/:keyword' component={AHeader} />

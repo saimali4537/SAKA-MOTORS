@@ -90,7 +90,7 @@ const StoreAddScreen = ({ match, history }) => {
     }
   return (
     <><br/><br/>
-      <Link to='/manager/mystore' className='btn btn-light my-3'>
+      <Link to='/store/manager/mystore' className='btn btn-light my-3'>
         Go Back
       </Link>
       <FormContainer>
